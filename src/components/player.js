@@ -1,5 +1,5 @@
 const CONSTANTS = {
-    PLAYER_SPEED: 0.4
+    PLAYER_SPEED: 2
 }
 
 
@@ -11,7 +11,6 @@ export default class Player {
     }
 
     animate(ctx){
-        this.move();
         this.drawPlayer(ctx);
     }
 
@@ -26,13 +25,21 @@ export default class Player {
     move(){
         switch(this.movement) {
             case "LEFT":
+                console.log('left')
                 this.playerPosX -= CONSTANTS.PLAYER_SPEED;
+                break;
             case "RIGHT":
+                console.log('right')
                 this.playerPosX += CONSTANTS.PLAYER_SPEED;
+                break;
             case "UP":
+                console.log('up')
                 this.playerPosY -= CONSTANTS.PLAYER_SPEED;
+                break;
             case "DOWN":
+                console.log('down')
                 this.playerPosY += CONSTANTS.PLAYER_SPEED;
+                break;
         }
     }
 }
