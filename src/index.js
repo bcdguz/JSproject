@@ -1,12 +1,7 @@
 import _ from 'lodash';
+import Game from './components/game';
 
-function component() {
-    const element = document.createElement('div');
-
-    // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-    return element;
-}
-
-document.body.appendChild(component());
+window.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById('bird-game');
+    const game = new Game(canvas);
+})
