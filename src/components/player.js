@@ -10,8 +10,9 @@ export default class Player {
 
     drawPlayer(ctx){
         ctx.beginPath();
+        ctx.arc(this.playerPosX, this.playerPosY, 18, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
-        ctx.arc(this.playerPosX, this.playerPosY, 50, 0, 2 * Math.PI);
+        ctx.fill()
         ctx.stroke();
     }
 }
