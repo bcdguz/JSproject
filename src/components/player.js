@@ -1,5 +1,5 @@
 const CONSTANTS = {
-    PLAYER_SPEED: 0.4
+    PLAYER_SPEED: 0.8
 }
 
 
@@ -25,7 +25,7 @@ export default class Player {
 
     move(){
         let move = this.movement;
-        console.log(move);
+        
         if (move["wKey"] === true && move["aKey"] === true) {
             this.playerPosX -= 0.5 * CONSTANTS.PLAYER_SPEED;
             this.playerPosY -= 0.5 * CONSTANTS.PLAYER_SPEED;
@@ -48,23 +48,5 @@ export default class Player {
             this.playerPosX += CONSTANTS.PLAYER_SPEED;
         }
 
-        // if(this.movement) {
-        //     case "LEFT":
-        //         console.log('left')
-        //         this.playerPosX -= CONSTANTS.PLAYER_SPEED;
-        //         break;
-        //     case "RIGHT":
-        //         console.log('right')
-        //         this.playerPosX += CONSTANTS.PLAYER_SPEED;
-        //         break;
-        //     case "UP":
-        //         console.log('up')
-        //         this.playerPosY -= CONSTANTS.PLAYER_SPEED;
-        //         break;
-        //     case "DOWN":
-        //         console.log('down')
-        //         this.playerPosY += CONSTANTS.PLAYER_SPEED;
-        //         break;
-        // }
     }
 }

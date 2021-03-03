@@ -30,7 +30,6 @@ export default class Game {
     }
 
     moveBinds(e){
-        console.log(e)
         switch(e.keyCode){
             case 87: //w key
                 if (e.type === "keydown") {
