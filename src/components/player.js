@@ -6,6 +6,7 @@ const CONSTANTS = {
 
 export default class Player {
     constructor(dimensions){
+        this.dimensions = dimensions;
         this.playerPosY = dimensions.height/2;
         this.playerPosX = dimensions.width/5;
         this.angle = Math.log(this.playerPosY,this.playerPosX);
@@ -51,27 +52,38 @@ export default class Player {
 
     move(){
         let move = this.movement;
+        const speed = CONSTANTS.PLAYER_SPEED;
+        const radius = CONSTANTS.PLAYER_RADIUS;
+        const dimensions = this.dimensions;
+
+        //boundary checks
+        const upBound = this.playerPosY - speed - radius > 0;
+        const lowBound = this.playerPosY + speed + radius < dimensions.height;
+        const leftBound = this.playerPosX - speed - radius > 0;
+        const rightBound = this.playerPosX + speed + radius < dimensions.width;
         
         if (move["wKey"] && move["aKey"]) {
-            this.playerPosX -= 0.5 * CONSTANTS.PLAYER_SPEED;
-            this.playerPosY -= 0.5 * CONSTANTS.PLAYER_SPEED;
+            if (upBound && leftBound) {
+                this.playerPosX -= 0.5 * speed;
+                this.playerPosY -= 0.5 * speed;
+            }
         } else if (move["wKey"] && move["dKey"]) {
-            this.playerPosX += 0.5 * CONSTANTS.PLAYER_SPEED;
-            this.playerPosY -= 0.5 * CONSTANTS.PLAYER_SPEED;
+            this.playerPosX += 0.5 * speed;
+            this.playerPosY -= 0.5 * speed;
         } else if (move["sKey"] && move["aKey"]) {
-            this.playerPosX -= 0.5 * CONSTANTS.PLAYER_SPEED;;
-            this.playerPosY += 0.5 * CONSTANTS.PLAYER_SPEED;
+            this.playerPosX -= 0.5 * speed;;
+            this.playerPosY += 0.5 * speed;
         } else if (move["sKey"] && move["dKey"]) {
-            this.playerPosX += 0.5 * CONSTANTS.PLAYER_SPEED;
-            this.playerPosY += 0.5 * CONSTANTS.PLAYER_SPEED;
+            this.playerPosX += 0.5 * speed;
+            this.playerPosY += 0.5 * speed;
         } else if (move["wKey"]) {
-            this.playerPosY -= CONSTANTS.PLAYER_SPEED;
+            if (upBound) this.playerPosY -= speed;
         } else if (move["sKey"]) {
-            this.playerPosY += CONSTANTS.PLAYER_SPEED;
+            if (lowBound) this.playerPosY += speed;
         } else if (move["aKey"]) {
-            this.playerPosX -= CONSTANTS.PLAYER_SPEED;
+            if (leftBound) this.playerPosX -= speed;
         } else if (move["dKey"]) {
-            this.playerPosX += CONSTANTS.PLAYER_SPEED;
+            if (rightBound) this.playerPosX += speed;
         }
     }
 
