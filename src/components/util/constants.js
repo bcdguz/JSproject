@@ -7,3 +7,7 @@ export const walls = [
     { posX: 235, posY: 80, width: 130, height: 125 },
     { posX: 235, posY: 380, width: 130, height: 125 }
 ]
+
+export const isBetween = (bound1, bound2, val) => {
+    if (bound1 <= val && bound2 >= val) return true;
+}

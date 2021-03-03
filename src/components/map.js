@@ -1,4 +1,5 @@
-import { walls } from './util/constants';
+import { walls, isBetween } from './util/constants';
+
 
 export default class Map {
     constructor(dimensions){
@@ -30,22 +31,31 @@ export default class Map {
     }
 
     collidesWith(player){
+        const pBound = player.playerBounds()
+        const pRight = pBound.right;
+        const pTop = pBound.top;
+        const pBot = pBound.bot;
+        const pLeft = pBound.left;
+
         this.eachWall(wall => {
+            
             const wallLeft = wall.posX;
             const wallRight = wall.posX + wall.width;
             const wallTop = wall.posY;
             const wallBot = wall.posY + wall.height;
+            if ((pRight === wallLeft) &&
+                (isBetween(wallTop, wallBot, pTop) ||
+                isBetween(wallTop, wallBot, pBot))) {
+                    console.log("bump")
+                    player.movement.dKey = false;
+                }
         })
         
-        if (obj1.left > obj2.right || obj1.right < obj2.left) {
-            return false;
-        }
-        if (obj1.top > obj2.bottom || obj1.bottom < obj2.top) {
-            return false;
-        }
-        return true;
-        
-
-
+        //  || obj1.right < obj2.left) {
+        //     return false;
+        // }
+        // if (obj1.top > obj2.bottom || obj1.bottom < obj2.top) {
+        //     return false;
+        // }
     }
 }

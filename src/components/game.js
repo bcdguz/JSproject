@@ -12,6 +12,7 @@ export default class Game {
 
     animate(){
         this.map.animate(this.ctx);
+        this.map.collidesWith(this.player);
         this.player.animate(this.ctx);
 
         if (this.running) {
