@@ -17,15 +17,18 @@ export default class Player {
     }
 
     drawPlayer(ctx){
+        const posX = this.playerPosX;
+        const posY = this.playerPosY
+
         //main circle
         ctx.beginPath();
-        ctx.arc(this.playerPosX, this.playerPosY, 18, 0, 2 * Math.PI);
+        ctx.arc(posX, posY, 18, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
         ctx.fill()
         ctx.stroke();
 
         //weapon
-        ctx.drawImage(this.gun, this.playerPosX, this.playerPosY, 50, 25)
+        ctx.drawImage(this.gun, posX + 5, posY - 3, 30, 20)
 
     }
 
