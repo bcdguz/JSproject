@@ -1,6 +1,6 @@
 const CONSTANTS = {
     PLAYER_SPEED: 1.5,
-    PLAYER_RADIUS: 18
+    PLAYER_RADIUS: 14
 }
 
 
@@ -36,7 +36,7 @@ export default class Player {
         ctx.stroke();
         
         //weapon
-        ctx.drawImage(this.gun, 5, - 3, 30, 20);
+        ctx.drawImage(this.gun, 5, - 3, 28, 19);
         
         ctx.restore();
     }
