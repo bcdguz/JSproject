@@ -1,4 +1,4 @@
-import { walls } from './util/constants';
+import { walls, overlap } from './util/constants';
 
 const CONSTANTS = {
     PLAYER_SPEED: 1.5,
@@ -18,6 +18,7 @@ export default class Player {
 
     animate(ctx){
         this.move();
+        this.collisionCheck();
         this.drawPlayer(ctx);
     }
 
@@ -54,7 +55,19 @@ export default class Player {
     }
 
     collisionCheck() {
-        
+        const pBound = this.playerBounds();
+
+        walls.forEach(wall => {
+            const wallRect = {};
+            wallRect.left = wall.posX;
+            wallRect.right = wall.posX + wall.width;
+            wallRect.top = wall.posY;
+            wallRect.bottom = wall.posY + wall.height;
+
+            if (overlap(pBound, wallRect)) {
+                console.log("boom")
+            }
+        })
     }
 
     look(dir) {
@@ -64,9 +77,6 @@ export default class Player {
         let dx = dir.x - this.playerPosX;
         this.angle = Math.atan2(dy, dx);
     }
-
-
-
 
     move(){
         let move = this.movement;

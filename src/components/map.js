@@ -33,21 +33,21 @@ export default class Map {
 
    
 
-    collidesWith(player){
+    // collidesWith(player){
         
 
-        this.eachWall(wall => {
-            const wallRect = {};
-            wallRect.left = wall.posX;
-            wallRect.right = wall.posX + wall.width;
-            wallRect.top = wall.posY;
-            wallRect.bottom = wall.posY + wall.height;
+    //     this.eachWall(wall => {
+    //         const wallRect = {};
+    //         wallRect.left = wall.posX;
+    //         wallRect.right = wall.posX + wall.width;
+    //         wallRect.top = wall.posY;
+    //         wallRect.bottom = wall.posY + wall.height;
             
-            if (overlap(pRect, wallRect)) {
-                console.log("boom")
-            }
+    //         if (overlap(pRect, wallRect)) {
+    //             console.log("boom")
+    //         }
 
-        })
+    //     })
         
-    }
+    // }
 }
