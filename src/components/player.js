@@ -7,7 +7,7 @@ export default class Player {
     constructor(dimensions){
         this.playerPosY = dimensions.height/2;
         this.playerPosX = dimensions.width/5;
-        this.angle = -Math.PI/2;
+        this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.gun = document.getElementById('pistol');
     }
@@ -21,21 +21,21 @@ export default class Player {
         const posX = this.playerPosX;
         const posY = this.playerPosY
 
-        ctx.save()
+        ctx.save();
         
-
+        ctx.setTransform(1, 0, 0, 1, posX, posY);
+        ctx.rotate(this.angle);
         
         //main body
         ctx.beginPath();
-        ctx.arc(posX, posY, 18, 0, 2 * Math.PI);
+        ctx.arc(0, 0, 18, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
         ctx.fill();
         ctx.stroke();
         
         //weapon
-        ctx.drawImage(this.gun, posX + 5, posY - 3, 30, 20);
+        ctx.drawImage(this.gun, 5, - 3, 30, 20);
         
-        ctx.rotate(this.angle);
         ctx.restore();
     }
 
