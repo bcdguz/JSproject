@@ -8,7 +8,7 @@ export default class Player {
     constructor(dimensions){
         this.dimensions = dimensions;
         this.playerPosY = dimensions.height/2;
-        this.playerPosX = dimensions.width/5;
+        this.playerPosX = dimensions.width/8;
         this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.gun = document.getElementById('pistol');
