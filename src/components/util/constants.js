@@ -11,3 +11,15 @@ export const walls = [
 export const isBetween = (bound1, bound2, val) => {
     if (bound1 <= val && bound2 >= val) return true;
 }
+
+export const overlap = (rect1, rect2) => {
+    //check that they don't overlap in the x axis
+    if (rect1.left > rect2.right || rect1.right < rect2.left) {
+        return false;
+    }
+    //check that they don't overlap in the y axis
+    if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
+        return false;
+    }
+    return true;
+};

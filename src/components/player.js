@@ -1,3 +1,5 @@
+import { walls } from './util/constants';
+
 const CONSTANTS = {
     PLAYER_SPEED: 1.5,
     PLAYER_RADIUS: 14
@@ -49,6 +51,10 @@ export default class Player {
             top: midY - radius, bottom: midY + radius,
             left: midX - radius, right: midX + radius 
         }
+    }
+
+    collisionCheck() {
+        
     }
 
     look(dir) {
