@@ -42,10 +42,12 @@ export default class Player {
     }
 
     playerBounds(){
+        const midX = this.playerPosX;
+        const midY = this.playerPosY;
+        const radius = CONSTANTS.PLAYER_RADIUS;
         return {
-            centerX: this.playerPosX,
-            centryY: this.playerPosY,
-            radius: CONSTANTS.PLAYER_RADIUS
+            top: midY - radius, bottom: midY + radius,
+            left: midX - radius, right: midX + radius 
         }
     }
 
@@ -56,6 +58,8 @@ export default class Player {
         let dx = dir.x - this.playerPosX;
         this.angle = Math.atan2(dy, dx);
     }
+
+
 
 
     move(){
