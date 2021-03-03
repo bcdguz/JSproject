@@ -32,20 +32,20 @@ export default class Game {
     moveBinds(e){
         console.log(e)
         switch(e.keyCode){
-            case 87:
-                this.player.movement = "UP"; // w key
+            case 87: //w key
+                this.player.movement[wKey] = true ? false : true;
                 this.player.move();
                 break;
-            case 65:
-                this.player.movement = "LEFT"; // a key
+            case 65: //a key
+                this.player.movement[aKey] = true ? false : true;
                 this.player.move();
                 break;
-            case 83:
-                this.player.movement = "DOWN"; // s key
+            case 83: //s key
+                this.player.movement[sKey] = true ? false : true;
                 this.player.move();
                 break;
-            case 68:
-                this.player.movement = "RIGHT"; // d key
+            case 68: //d key
+                this.player.movement[dKey] = true ? false : true;
                 this.player.move();
                 break;
         }
@@ -54,5 +54,6 @@ export default class Game {
     moveListener(){
         const moveBound = this.moveBinds.bind(this);
         document.addEventListener("keydown",moveBound);
+        document.addEventListener("keyup", moveBound);
     }
 }

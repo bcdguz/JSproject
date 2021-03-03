@@ -1,5 +1,5 @@
 const CONSTANTS = {
-    PLAYER_SPEED: 2
+    PLAYER_SPEED: 4
 }
 
 
@@ -7,7 +7,7 @@ export default class Player {
     constructor(dimensions){
         this.playerPosY = dimensions.height/2;
         this.playerPosX = dimensions.width/5;
-        this.movement = "";
+        this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
     }
 
     animate(ctx){
