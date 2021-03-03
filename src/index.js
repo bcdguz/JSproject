@@ -7,4 +7,5 @@ window.addEventListener("DOMContentLoaded", () => {
     game.restart();
     game.play();
     game.moveListener();
+    game.lookListener();
 })

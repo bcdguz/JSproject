@@ -1,8 +1,10 @@
 import Player from './player';
 import Map from './map';
+import mousePointer from './util/mouse_pointer';
 
 export default class Game {
     constructor(canvas){
+        this.canvasEl = canvas;
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
         
@@ -66,5 +68,12 @@ export default class Game {
         const moveBound = this.moveBinds.bind(this);
         document.addEventListener("keydown",moveBound);
         document.addEventListener("keyup", moveBound);
+    }
+
+    lookListener(){
+        document.addEventListener("mousemove", (e) => {
+            let dir = mousePointer(this.canvasEl, e);
+            this.player.look(dir);
+        })
     }
 }

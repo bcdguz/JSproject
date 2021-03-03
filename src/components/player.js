@@ -7,6 +7,7 @@ export default class Player {
     constructor(dimensions){
         this.playerPosY = dimensions.height/2;
         this.playerPosX = dimensions.width/5;
+        this.angle = -Math.PI/2;
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.gun = document.getElementById('pistol');
     }
@@ -20,16 +21,22 @@ export default class Player {
         const posX = this.playerPosX;
         const posY = this.playerPosY
 
-        //main circle
+        ctx.save()
+        
+
+        
+        //main body
         ctx.beginPath();
         ctx.arc(posX, posY, 18, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
-        ctx.fill()
+        ctx.fill();
         ctx.stroke();
-
+        
         //weapon
-        ctx.drawImage(this.gun, posX + 5, posY - 3, 30, 20)
-
+        ctx.drawImage(this.gun, posX + 5, posY - 3, 30, 20);
+        
+        ctx.rotate(this.angle);
+        ctx.restore();
     }
 
     move(){
@@ -56,6 +63,13 @@ export default class Player {
         } else if (move["dKey"]) {
             this.playerPosX += CONSTANTS.PLAYER_SPEED;
         }
+    }
 
+    look(dir){
+        // This method takes in xy of mouse pos to return angle
+        //x,y relative to players position
+        let dy = dir.y - this.playerPosY;
+        let dx = dir.x - this.playerPosX;
+        this.angle = Math.atan2(dy, dx);
     }
 }
