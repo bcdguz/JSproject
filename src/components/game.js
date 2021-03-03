@@ -5,7 +5,7 @@ export default class Game {
     constructor(canvas){
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
-        this.moveListener();
+        
     }
 
     animate(){
@@ -33,20 +33,32 @@ export default class Game {
         console.log(e)
         switch(e.keyCode){
             case 87: //w key
-                this.player.movement[wKey] = true ? false : true;
-                this.player.move();
+                if (e.type === "keydown") {
+                    this.player.movement["wKey"] = true;
+                } else {
+                    this.player.movement["wKey"] = false;
+                }
                 break;
             case 65: //a key
-                this.player.movement[aKey] = true ? false : true;
-                this.player.move();
+                if (e.type === "keydown") {
+                    this.player.movement["aKey"] = true;
+                } else {
+                    this.player.movement["aKey"] = false;
+                }
                 break;
             case 83: //s key
-                this.player.movement[sKey] = true ? false : true;
-                this.player.move();
+                if (e.type === "keydown") {
+                    this.player.movement["sKey"] = true;
+                } else {
+                    this.player.movement["sKey"] = false;
+                }
                 break;
             case 68: //d key
-                this.player.movement[dKey] = true ? false : true;
-                this.player.move();
+                if (e.type === "keydown") {
+                    this.player.movement["dKey"] = true;
+                } else {
+                    this.player.movement["dKey"] = false;
+                }
                 break;
         }
     }
