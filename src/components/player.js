@@ -8,6 +8,7 @@ export default class Player {
         this.playerPosY = dimensions.height/2;
         this.playerPosX = dimensions.width/5;
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
+        this.gun = document.getElementById('pistol');
     }
 
     animate(ctx){
@@ -16,35 +17,40 @@ export default class Player {
     }
 
     drawPlayer(ctx){
+        //main circle
         ctx.beginPath();
         ctx.arc(this.playerPosX, this.playerPosY, 18, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
         ctx.fill()
         ctx.stroke();
+
+        //weapon
+        ctx.drawImage(this.gun, this.playerPosX, this.playerPosY, 50, 25)
+
     }
 
     move(){
         let move = this.movement;
         
-        if (move["wKey"] === true && move["aKey"] === true) {
+        if (move["wKey"] && move["aKey"]) {
             this.playerPosX -= 0.5 * CONSTANTS.PLAYER_SPEED;
             this.playerPosY -= 0.5 * CONSTANTS.PLAYER_SPEED;
-        } else if (move["wKey"] === true && move["dKey"] === true) {
+        } else if (move["wKey"] && move["dKey"]) {
             this.playerPosX += 0.5 * CONSTANTS.PLAYER_SPEED;
             this.playerPosY -= 0.5 * CONSTANTS.PLAYER_SPEED;
-        } else if (move["sKey"] === true && move["aKey"] === true) {
+        } else if (move["sKey"] && move["aKey"]) {
             this.playerPosX -= 0.5 * CONSTANTS.PLAYER_SPEED;;
             this.playerPosY += 0.5 * CONSTANTS.PLAYER_SPEED;
-        } else if (move["sKey"] === true && move["dKey"] === true) {
+        } else if (move["sKey"] && move["dKey"]) {
             this.playerPosX += 0.5 * CONSTANTS.PLAYER_SPEED;
             this.playerPosY += 0.5 * CONSTANTS.PLAYER_SPEED;
-        } else if (move["wKey"] === true) {
+        } else if (move["wKey"]) {
             this.playerPosY -= CONSTANTS.PLAYER_SPEED;
-        } else if (move["sKey"] === true) {
+        } else if (move["sKey"]) {
             this.playerPosY += CONSTANTS.PLAYER_SPEED;
-        } else if (move["aKey"] === true) {
+        } else if (move["aKey"]) {
             this.playerPosX -= CONSTANTS.PLAYER_SPEED;
-        } else if (move["dKey"] === true) {
+        } else if (move["dKey"]) {
             this.playerPosX += CONSTANTS.PLAYER_SPEED;
         }
 
