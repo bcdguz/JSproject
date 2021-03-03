@@ -1,5 +1,6 @@
 const CONSTANTS = {
-    PLAYER_SPEED: 0.8
+    PLAYER_SPEED: 1.5,
+    PLAYER_RADIUS: 18
 }
 
 
@@ -28,7 +29,7 @@ export default class Player {
         
         //main body
         ctx.beginPath();
-        ctx.arc(0, 0, 18, 0, 2 * Math.PI);
+        ctx.arc(0, 0, CONSTANTS.PLAYER_RADIUS, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
         ctx.fill();
         ctx.stroke();
@@ -38,6 +39,15 @@ export default class Player {
         
         ctx.restore();
     }
+
+    playerBounds(){
+        return {
+            centerX: this.playerPosX,
+            centryY: this.playerPosY,
+            radius: CONSTANTS.PLAYER_RADIUS
+        }
+    }
+
 
     move(){
         let move = this.movement;
