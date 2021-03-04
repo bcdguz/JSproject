@@ -1,4 +1,4 @@
-export const walls = [
+export const WALLS = [
     { posX: 630, posY: 340, width: 120, height: 180 },
     { posX: 630, posY: 60, width: 120, height: 180 },
     { posX: 430, posY: 0, width: 120, height: 160 },

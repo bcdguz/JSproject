@@ -1,4 +1,4 @@
-import { walls } from './util/constants';
+import { WALLS } from './util/constants';
 
 
 export default class Map {
@@ -6,7 +6,7 @@ export default class Map {
         this.dimensions = dimensions; //canvas dimensions
         this.wallImg = document.getElementById('wall');
         this.background = document.getElementById('background');
-        this.walls = walls;
+        this.walls = WALLS;
         
     }
 
@@ -30,24 +30,4 @@ export default class Map {
     eachWall(cb){ //preserve my walls context
         this.walls.forEach(cb.bind(this));
     }
-
-   
-
-    // collidesWith(player){
-        
-
-    //     this.eachWall(wall => {
-    //         const wallRect = {};
-    //         wallRect.left = wall.posX;
-    //         wallRect.right = wall.posX + wall.width;
-    //         wallRect.top = wall.posY;
-    //         wallRect.bottom = wall.posY + wall.height;
-            
-    //         if (overlap(pRect, wallRect)) {
-    //             console.log("boom")
-    //         }
-
-    //     })
-        
-    // }
 }

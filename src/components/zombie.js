@@ -1,5 +1,5 @@
 import { overlap } from './util/overlap';
-import {ZOMBIE, walls} from './util/constants';
+import { ZOMBIE, WALLS } from './util/constants';
 
 export default class Zombie {
     constructor(dimensions, player){
@@ -64,38 +64,55 @@ export default class Zombie {
         }
     }
 
-    collisionCheck() {
+    collisionCheck(player) {
         const zBound = this.zombieBounds();
         const dim = this.dimensions;
+        const radius = ZOMBIE.RADIUS;
+        const speed = ZOMBIE.ZOMB_SPEED * 0.5;
 
-        walls.forEach(wall => {
+        WALLS.forEach(wall => {
             const wallRect = {};
             wallRect.left = wall.posX;
             wallRect.right = wall.posX + wall.width;
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
-
-            const collision = overlap(zBound, wallRect);
-            const radius = ZOMBIE.RADIUS;
+            
+            const collision = overlap(zBound, wallRect); //returns an object
+            const playerLeft = player.playerPosX < this.posX;
+            
 
             switch (collision.type) {
-                case "right":
-                    this.posX = collision.val - radius;
-                    this.posY += ZOMBIE.ZOMB_SPEED;
-                    break;
-                case "left":
-                    this.posX = collision.val + radius;
-                    if (this.posY > this.dimensions.height/2) {
-                        this.posY -= ZOMBIE.ZOMB_SPEED;
+                case "rightBot":
+                    if (zBound.right > wallRect.left + 2) {
+                        this.posY = collision.bot - radius;
+                        playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {
-                        this.posY += ZOMBIE.ZOMB_SPEED;
+                        this.posX = collision.right - radius;
                     }
                     break;
-                case "top":
-                    this.posY = collision.val + radius;
+                case "leftBot":
+                    if (zBound.left < wallRect.right - 2) {
+                        this.posY = collision.bot - radius;
+                        playerLeft ? (this.posX -= speed) : (this.posX += speed);
+                    } else {
+                        this.posX = collision.left + radius;
+                    }
                     break;
-                case "bottom":
-                    this.posY = collision.val - radius;
+                case "rightTop":
+                    if (zBound.right > wallRect.left + 2) {
+                        this.posY = collision.top + radius;
+                        playerLeft ? (this.posX -= speed) : (this.posX += speed);
+                    } else {
+                        this.posX = collision.right - radius;
+                    }
+                    break;
+                case "leftTop":
+                    if (zBound.left < wallRect.right - 2) {
+                        this.posY = collision.top + radius;
+                        playerLeft ? (this.posX -= speed) : (this.posX += speed);
+                    } else {
+                        this.posX = collision.left + radius;
+                    }
                     break;
             }
         })

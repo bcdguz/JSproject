@@ -1,4 +1,4 @@
-import { walls, PLAYER } from './util/constants';
+import { WALLS, PLAYER } from './util/constants';
 import { overlap } from './util/overlap';
 
 export default class Player {
@@ -52,15 +52,15 @@ export default class Player {
     collisionCheck() {
         const pBound = this.playerBounds();
 
-        walls.forEach(wall => {
+        WALLS.forEach(wall => {
             const wallRect = {};
             wallRect.left = wall.posX;
             wallRect.right = wall.posX + wall.width;
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
 
-            const collision = overlap(pBound, wallRect);
             const radius = PLAYER.PLAYER_RADIUS;
+            const collision = overlap(pBound, wallRect);
 
             switch (collision.type) {
                 case "rightBot":
