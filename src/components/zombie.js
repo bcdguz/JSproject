@@ -11,7 +11,7 @@ export default class Zombie {
 
     animate(ctx, player) {
         this.moveZombie(player);
-        this.collisionCheck();
+        this.collisionCheck(player);
         this.drawZombie(ctx);
     }
 
@@ -46,12 +46,12 @@ export default class Zombie {
         const position = this.posY + Math.sin(this.angle) * speed;
         const upBound = position - ZOMBIE.RADIUS > 0;
         const lowBound = position + ZOMBIE.RADIUS < this.dimensions.height;
-
-        this.posX += Math.cos(this.angle) * speed;
-
+        
+        this.posX += Math.cos(this.angle) * speed;        
         if (upBound && lowBound) {
             this.posY += Math.sin(this.angle) * speed;
         }
+
     }
 
     zombieBounds() {
@@ -66,6 +66,7 @@ export default class Zombie {
 
     collisionCheck() {
         const zBound = this.zombieBounds();
+        const dim = this.dimensions;
 
         walls.forEach(wall => {
             const wallRect = {};
@@ -80,9 +81,15 @@ export default class Zombie {
             switch (collision.type) {
                 case "right":
                     this.posX = collision.val - radius;
+                    this.posY += ZOMBIE.ZOMB_SPEED;
                     break;
                 case "left":
                     this.posX = collision.val + radius;
+                    if (this.posY > this.dimensions.height/2) {
+                        this.posY -= ZOMBIE.ZOMB_SPEED;
+                    } else {
+                        this.posY += ZOMBIE.ZOMB_SPEED;
+                    }
                     break;
                 case "top":
                     this.posY = collision.val + radius;
