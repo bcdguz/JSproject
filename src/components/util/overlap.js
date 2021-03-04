@@ -28,22 +28,5 @@ export const overlap = (rect1, rect2) => {
         return collision;
     }
     
-    
-    // else if (leftCheck && topCheck && botCheck) {
-    //     collision.type = "left";
-    //     collision.val = rect2.right;
-    //     return collision;
-    // } else if (topCheck && leftCheck && rightCheck) {
-    //     collision.type = "top";
-    //     collision.val = rect2.bottom;
-    //     return collision;
-    // } else if (botCheck && leftCheck && rightCheck) {
-    //     collision.type = "bottom";
-    //     collision.val = rect2.top;
-    //     return collision
-    // } 
-
-    //corner logic still broken
-
     return collision;
 };
