@@ -1,9 +1,4 @@
-import { walls, overlap } from './util/constants';
-
-const CONSTANTS = {
-    PLAYER_SPEED: 1.5,
-    PLAYER_RADIUS: 14
-}
+import { walls, overlap, PLAYER } from './util/constants';
 
 
 export default class Player {
@@ -33,7 +28,7 @@ export default class Player {
         
         //main body
         ctx.beginPath();
-        ctx.arc(0, 0, CONSTANTS.PLAYER_RADIUS, 0, 2 * Math.PI);
+        ctx.arc(0, 0, PLAYER.PLAYER_RADIUS, 0, 2 * Math.PI);
         ctx.fillStyle = "brown";
         ctx.fill();
         ctx.stroke();
@@ -47,7 +42,7 @@ export default class Player {
     playerBounds(){
         const midX = this.playerPosX;
         const midY = this.playerPosY;
-        const radius = CONSTANTS.PLAYER_RADIUS;
+        const radius = PLAYER.PLAYER_RADIUS;
         return {
             top: midY - radius, bottom: midY + radius,
             left: midX - radius, right: midX + radius 
@@ -65,7 +60,7 @@ export default class Player {
             wallRect.bottom = wall.posY + wall.height;
 
             const collision = overlap(pBound, wallRect);
-            const radius = CONSTANTS.PLAYER_RADIUS;
+            const radius = PLAYER.PLAYER_RADIUS;
 
             switch (collision.type) {
                 case "right":
@@ -94,8 +89,8 @@ export default class Player {
 
     move(){
         let move = this.movement;
-        const speed = CONSTANTS.PLAYER_SPEED;
-        const radius = CONSTANTS.PLAYER_RADIUS;
+        const speed = PLAYER.PLAYER_SPEED;
+        const radius = PLAYER.PLAYER_RADIUS;
         const height = this.dimensions.height;
         const width = this.dimensions.width;
 
