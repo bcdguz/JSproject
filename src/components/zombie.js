@@ -82,7 +82,7 @@ export default class Zombie {
             const edgeWall = wallRect.top === 0 || wallRect.bottom === dim.height;
 
             const collision = overlap(zBound, wallRect); //returns an object
-
+            //think about spliting logic? this.colliding = true?
             switch (collision.type) {
                 case "rightBot":
                     if (zBound.right > wallRect.left + 2) {
