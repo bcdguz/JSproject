@@ -39,7 +39,17 @@ export default class Zombie {
 
     moveZombie(player) {
         this.rotate(player);
+        const dim = this.dimensions;
+        //boundary checks
+        const upBound = this.playerPosY - speed - radius > 0;
+        const lowBound = this.playerPosY + speed + radius < dim.height;
+
         this.posX += Math.cos(this.angle) * ZOMBIE.ZOMB_SPEED;
-        this.posY += Math.sin(this.angle) * ZOMBIE.ZOMB_SPEED;
+
+        if (upBound && lowBound) {
+            this.posY += Math.sin(this.angle) * ZOMBIE.ZOMB_SPEED;
+        }
     }
+
+
 }
