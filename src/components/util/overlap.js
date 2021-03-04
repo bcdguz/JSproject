@@ -9,22 +9,18 @@ export const overlap = (rect1, rect2) => {
     if (rightCheck && topCheck && botCheck) {
         adjust.type = "right";
         adjust.val = rect2.left;
-        console.log('right')
         return adjust
     } else if (leftCheck && topCheck && botCheck) {
         adjust.type = "left";
         adjust.val = rect2.right;
-        console.log('left')
         return adjust;
     } else if (topCheck && leftCheck && rightCheck) {
         adjust.type = "top";
         adjust.val = rect2.bottom;
-        console.log("in top")
         return adjust;
     } else if (botCheck && leftCheck && rightCheck) {
         adjust.type = "bottom";
         adjust.val = rect2.top;
-        console.log("in bottom")
         return adjust
     }
 

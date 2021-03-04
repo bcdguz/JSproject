@@ -3,6 +3,7 @@ import {ZOMBIE} from './util/constants';
 
 export default class Zombie {
     constructor(dimensions, player){
+        this.dimensions = dimensions;
         this.posX = dimensions.width - 20;
         this.posY = dimensions.height/2;
         this.rotate(player);
@@ -39,15 +40,16 @@ export default class Zombie {
 
     moveZombie(player) {
         this.rotate(player);
-        const dim = this.dimensions;
+        const speed = ZOMBIE.ZOMB_SPEED;
         //boundary checks
-        const upBound = this.playerPosY - speed - radius > 0;
-        const lowBound = this.playerPosY + speed + radius < dim.height;
+        const position = this.posY + Math.sin(this.angle) * speed;
+        const upBound = position - ZOMBIE.RADIUS > 0;
+        const lowBound = position + ZOMBIE.RADIUS < this.dimensions.height;
 
-        this.posX += Math.cos(this.angle) * ZOMBIE.ZOMB_SPEED;
+        this.posX += Math.cos(this.angle) * speed;
 
         if (upBound && lowBound) {
-            this.posY += Math.sin(this.angle) * ZOMBIE.ZOMB_SPEED;
+            this.posY += Math.sin(this.angle) * speed;
         }
     }
 
