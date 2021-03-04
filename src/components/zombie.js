@@ -1,5 +1,5 @@
-import { random } from 'lodash';
-import {ZOMBIE} from './util/constants';
+import { overlap } from './util/overlap';
+import {ZOMBIE, walls} from './util/constants';
 
 export default class Zombie {
     constructor(dimensions, player){
@@ -11,6 +11,7 @@ export default class Zombie {
 
     animate(ctx, player) {
         this.moveZombie(player);
+        this.collisionCheck();
         this.drawZombie(ctx);
     }
 
@@ -53,5 +54,43 @@ export default class Zombie {
         }
     }
 
+    zombieBounds() {
+        const midX = this.posX;
+        const midY = this.posY;
+        const radius = ZOMBIE.RADIUS;
+        return {
+            top: midY - radius, bottom: midY + radius,
+            left: midX - radius, right: midX + radius
+        }
+    }
 
+    collisionCheck() {
+        const zBound = this.zombieBounds();
+
+        walls.forEach(wall => {
+            const wallRect = {};
+            wallRect.left = wall.posX;
+            wallRect.right = wall.posX + wall.width;
+            wallRect.top = wall.posY;
+            wallRect.bottom = wall.posY + wall.height;
+
+            const collision = overlap(zBound, wallRect);
+            const radius = ZOMBIE.RADIUS;
+
+            switch (collision.type) {
+                case "right":
+                    this.posX = collision.val - radius;
+                    break;
+                case "left":
+                    this.posX = collision.val + radius;
+                    break;
+                case "top":
+                    this.posY = collision.val + radius;
+                    break;
+                case "bottom":
+                    this.posY = collision.val - radius;
+                    break;
+            }
+        })
+    }
 }
