@@ -64,8 +64,22 @@ export default class Player {
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
 
-            if (overlap(pBound, wallRect)) {
-                console.log("boom")
+            const collision = overlap(pBound, wallRect);
+            const radius = CONSTANTS.PLAYER_RADIUS;
+
+            switch (collision.type) {
+                case "right":
+                    this.playerPosX = collision.val - radius;
+                    break;
+                case "left":
+                    this.playerPosX = collision.val + radius;
+                    break;
+                case "top":
+                    this.playerPosY = collision.val + radius;
+                    break;
+                case "bottom":
+                    this.playerPosY = collision.val - radius;
+                    break;
             }
         })
     }

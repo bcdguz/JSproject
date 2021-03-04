@@ -13,24 +13,48 @@ export const isBetween = (bound1, bound2, val) => {
 }
 
 export const overlap = (rect1, rect2) => {
-    if (((rect1.right < rect2.right && rect1.right > rect2.left) ||
-        (rect1.left < rect2.right && rect1.left > rect2.left)) &&
-        ((rect1.top < rect2.bottom && rect1.top > rect2.top) ||
-        (rect1.bottom < rect2.bottom && rect1.bottom > rect2.top))) {
-        debugger
-        return true;
+    const rightCheck = (rect1.right < rect2.right && rect1.right > rect2.left);
+    const topCheck = (rect1.top < rect2.bottom && rect1.top > rect2.top);
+    const botCheck = (rect1.bottom < rect2.bottom && rect1.bottom > rect2.top);
+    const leftCheck = (rect1.left < rect2.right && rect1.left > rect2.left);
+
+    // if (((rect1.right < rect2.right && rect1.right > rect2.left) ||
+    //     (rect1.left < rect2.right && rect1.left > rect2.left)) &&
+    //     ((rect1.top < rect2.bottom && rect1.top > rect2.top) ||
+    //     (rect1.bottom < rect2.bottom && rect1.bottom > rect2.top))) {
+    //     debugger
+    //     return true;
+    // }
+    let adjust = {type: null} 
+
+    if (rightCheck) {
+        if (botCheck || topCheck) {
+            adjust.type = "right";
+            adjust.val = rect2.left;
+            return adjust
+        }
     }
-
-
-
+    if (leftCheck) {
+        if (botCheck || topCheck) {
+            adjust.type = "left";
+            adjust.val = rect2.right;
+            return adjust;
+        }
+    }
+    if (topCheck) {
+        if (leftCheck || rightCheck) {
+            adjust.type = "top";
+            adjust.val = rect2.bottom;
+            return adjust;
+        }
+    }
+    if (botCheck) {
+        if (leftCheck || rightCheck) {
+            adjust.type = "bottom";
+            adjust.val = rect2.top;
+            return adjust
+        }
+    }
     
-    // if (rect1.left > rect2.right || rect1.right < rect2.left) {
-    //     return false;
-    // }
-    
-    // if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
-    //     return false;
-    // }
-    // debugger
-    return false;
+    return adjust;
 };
