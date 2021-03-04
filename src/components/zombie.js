@@ -68,7 +68,7 @@ export default class Zombie {
         const zBound = this.zombieBounds();
         const dim = this.dimensions;
         const radius = ZOMBIE.RADIUS;
-        const speed = ZOMBIE.ZOMB_SPEED * 0.5;
+        const speed = ZOMBIE.ZOMB_SPEED * 0.78;
 
         WALLS.forEach(wall => {
             const wallRect = {};
@@ -77,9 +77,11 @@ export default class Zombie {
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
             
+            const playerLeft = player.playerPosX < wallRect.right - wall.width/2;
+            const playerAbove = player.playerPosY < wallRect.bottom - wall.height/2;
+            const edgeWall = wallRect.top === 0 || wallRect.bottom === dim.height;
+
             const collision = overlap(zBound, wallRect); //returns an object
-            const playerLeft = player.playerPosX < this.posX;
-            
 
             switch (collision.type) {
                 case "rightBot":
@@ -88,6 +90,11 @@ export default class Zombie {
                         playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {
                         this.posX = collision.right - radius;
+                        if (edgeWall) {
+                            wallRect.top === 0 ? (this.posY += speed) : (this.posY -= speed);
+                        } else {
+                            playerAbove ? (this.posY -= speed) : (this.posY += speed);
+                        }
                     }
                     break;
                 case "leftBot":
@@ -96,6 +103,11 @@ export default class Zombie {
                         playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {
                         this.posX = collision.left + radius;
+                        if (edgeWall) {
+                            wallRect.top === 0 ? (this.posY += speed) : (this.posY -= speed);
+                        } else {
+                            playerAbove ? (this.posY -= speed) : (this.posY += speed);
+                        }
                     }
                     break;
                 case "rightTop":
@@ -104,6 +116,11 @@ export default class Zombie {
                         playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {
                         this.posX = collision.right - radius;
+                        if (edgeWall) {
+                            wallRect.top === 0 ? (this.posY += speed) : (this.posY -= speed);
+                        } else {
+                            playerAbove ? (this.posY -= speed) : (this.posY += speed);
+                        }
                     }
                     break;
                 case "leftTop":
@@ -112,6 +129,11 @@ export default class Zombie {
                         playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {
                         this.posX = collision.left + radius;
+                        if (edgeWall) {
+                            wallRect.top === 0 ? (this.posY += speed) : (this.posY -= speed);
+                        } else {
+                            playerAbove ? (this.posY -= speed) : (this.posY += speed);
+                        }
                     }
                     break;
             }
