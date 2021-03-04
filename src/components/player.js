@@ -63,17 +63,33 @@ export default class Player {
             const radius = PLAYER.PLAYER_RADIUS;
 
             switch (collision.type) {
-                case "right":
-                    this.playerPosX = collision.val - radius;
+                case "rightBot":
+                    if (pBound.right > wallRect.left + 2) {
+                        this.playerPosY = collision.bot - radius;
+                    } else {
+                        this.playerPosX = collision.right - radius;
+                    }
                     break;
-                case "left":
-                    this.playerPosX = collision.val + radius;
+                case "leftBot":
+                    if (pBound.left < wallRect.right - 2) {
+                        this.playerPosY = collision.bot - radius;
+                    } else {
+                        this.playerPosX = collision.left + radius;
+                    }
                     break;
-                case "top":
-                    this.playerPosY = collision.val + radius;
+                case "rightTop":
+                    if (pBound.right > wallRect.left + 2) {
+                        this.playerPosY = collision.top + radius;
+                    } else {
+                        this.playerPosX = collision.right - radius;
+                    }
                     break;
-                case "bottom":
-                    this.playerPosY = collision.val - radius;
+                case "leftTop":
+                    if (pBound.left < wallRect.right - 2) {
+                        this.playerPosY = collision.top + radius;
+                    } else {
+                        this.playerPosX = collision.left + radius;
+                    }
                     break;
             }
         })

@@ -4,27 +4,46 @@ export const overlap = (rect1, rect2) => {
     const botCheck = (rect1.bottom < rect2.bottom && rect1.bottom > rect2.top);
     const leftCheck = (rect1.left < rect2.right && rect1.left > rect2.left);
 
-    let adjust = { type: null }
+    let collision = { type: null }
 
-    if (rightCheck && topCheck && botCheck) {
-        adjust.type = "right";
-        adjust.val = rect2.left;
-        return adjust
-    } else if (leftCheck && topCheck && botCheck) {
-        adjust.type = "left";
-        adjust.val = rect2.right;
-        return adjust;
-    } else if (topCheck && leftCheck && rightCheck) {
-        adjust.type = "top";
-        adjust.val = rect2.bottom;
-        return adjust;
-    } else if (botCheck && leftCheck && rightCheck) {
-        adjust.type = "bottom";
-        adjust.val = rect2.top;
-        return adjust
+    if (rightCheck && botCheck) {
+        collision.type = "rightBot";
+        collision.right = rect2.left;
+        collision.bot = rect2.top;
+        return collision;
+    } else if (rightCheck && topCheck) {
+        collision.type = "rightTop";
+        collision.right = rect2.left;
+        collision.top = rect2.bottom;
+        return collision;
+    } else if (leftCheck && topCheck) {
+        collision.type = "leftTop";
+        collision.left = rect2.right;
+        collision.top = rect2.bottom;
+        return collision;
+    } else if (leftCheck && botCheck) {
+        collision.type = "leftBot";
+        collision.left = rect2.right;
+        collision.bot = rect2.top;
+        return collision;
     }
+    
+    
+    // else if (leftCheck && topCheck && botCheck) {
+    //     collision.type = "left";
+    //     collision.val = rect2.right;
+    //     return collision;
+    // } else if (topCheck && leftCheck && rightCheck) {
+    //     collision.type = "top";
+    //     collision.val = rect2.bottom;
+    //     return collision;
+    // } else if (botCheck && leftCheck && rightCheck) {
+    //     collision.type = "bottom";
+    //     collision.val = rect2.top;
+    //     return collision
+    // } 
 
     //corner logic still broken
 
-    return adjust;
+    return collision;
 };
