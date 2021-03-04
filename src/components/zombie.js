@@ -3,53 +3,43 @@ import {ZOMBIE} from './util/constants';
 
 export default class Zombie {
     constructor(dimensions, player){
-        this.posX = dimensions.width + ZOMBIE.RADIUS;
-        this.posY = random(-ZOMBIE.RADIUS, dimensions.height + ZOMBIE.RADIUS);
-        this.angle = Math.log(this.playerPosY, this.playerPosX);
+        this.posX = dimensions.width - 20;
+        this.posY = dimensions.height/2;
         this.rotate(player);
     }
 
-    animate(ctx) {}
+    animate(ctx, player) {
+        this.moveZombie(player);
+        this.drawZombie(ctx);
+    }
 
     drawZombie(ctx) {
         ctx.save();
         const posX = this.posX;
         const posY = this.posY;
-        ctx.translate(posX, posY);
+        
+        ctx.setTransform(1, 0, 0, 1, posX, posY)
         ctx.rotate(this.angle);
-        ctx.translate(-posX, -posY);
 
-        ctx.beginPath()
-        ctx.fillStyle = "#00cc44"
-        ctx.arc(posX, this.posY, ZOMBIE.RADIUS, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.beginPath();
+        ctx.fillStyle = "#00cc44";
+        ctx.arc(0, 0, ZOMBIE.RADIUS, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
 
-        // Hands
-        ctx.beginPath()
-        ctx.strokeStyle = "#00cc44"
-        ctx.lineCap = "round"
-        ctx.lineWidth = 2
-
-        // Right Hand
-        ctx.moveTo(posX + 5, this.posY + ZOMBIE.RADIUS - 2)
-        ctx.lineTo(posX + ZOMBIE.RADIUS + 15, this.posY + ZOMBIE.RADIUS - 5)
-        ctx.stroke()
-
-        // Left Hand
-        ctx.moveTo(posX + 5, this.posY - ZOMBIE.RADIUS + 2)
-        ctx.lineTo(posX + ZOMBIE.RADIUS + 15, this.posY - ZOMBIE.RADIUS + 5)
-        ctx.stroke()
 
         ctx.restore()
     }
 
     rotate(player) {
-        const dy = player.posY - this.posY;
-        const dx = player.posX - this.posX;
-        this.angle = Math.atan2(dy, dx)
+        const dy = player.playerPosY - this.posY;
+        const dx = player.playerPosX - this.posX;
+        this.angle = Math.atan2(dy, dx);
     }
 
-    moveZombie(player, zombies) {
-        this.rotate(player)
+    moveZombie(player) {
+        this.rotate(player);
+        this.posX += Math.cos(this.angle) * ZOMBIE.ZOMB_SPEED;
+        this.posY += Math.sin(this.angle) * ZOMBIE.ZOMB_SPEED;
     }
 }

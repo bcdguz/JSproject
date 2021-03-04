@@ -1,5 +1,6 @@
 import Player from './player';
 import Map from './map';
+import Zombie from './zombie';
 import mousePointer from './util/mouse_pointer';
 
 export default class Game {
@@ -12,8 +13,8 @@ export default class Game {
 
     animate(){
         this.map.animate(this.ctx);
-        
         this.player.animate(this.ctx);
+        this.zombie.animate(this.ctx, this.player);
 
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
@@ -22,8 +23,9 @@ export default class Game {
 
     restart(){
         this.running = false;
-        this.player = new Player(this.dimensions);
         this.map = new Map(this.dimensions);
+        this.player = new Player(this.dimensions);
+        this.zombie = new Zombie(this.dimensions, this.player);
         this.animate();
     }
 
