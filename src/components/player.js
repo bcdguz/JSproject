@@ -1,5 +1,5 @@
-import { walls, overlap, PLAYER } from './util/constants';
-
+import { walls, PLAYER } from './util/constants';
+import { overlap } from './util/overlap';
 
 export default class Player {
     constructor(dimensions){
