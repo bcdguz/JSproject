@@ -9,8 +9,8 @@ export default class Bullet {
         this.posY = y + this.angle.y * 40;
     }
 
-    animate(ctx, bullets) {
-        this.update(bullets); //add zombies
+    animate(ctx, bullets, zombies) {
+        this.update(bullets, zombies); //add zombies
         this.drawBullet(ctx);
     }
 
@@ -54,11 +54,24 @@ export default class Bullet {
         return outOfContainer;
     }
 
-    update(bullets) { // add zombies
-        //Remove bullet if it goes out of screen
-        if (this.outOfBounds()) {
-            const idx = bullets.indexOf(this);
-            bullets = bullets.splice(idx, 1);
+    hitZombie(zombies) {
+        const bullet = this.bulletBounds();
+        for (let i = 0; i < zombies.length; i++) {
+            const zombie = zombies[i].zombieBounds();
+            if (overlap(bullet, zombie).type !== null) return i;
+        }
+        return -1;
+    }
+
+    update(bullets, zombies) {
+        const zombieIdx = this.hitZombie(zombies);
+        const bulletIdx = bullets.indexOf(this);
+        if (zombieIdx != -1) {
+            zombies = zombies.splice(zombieIdx, 1);
+            bullets = bullets.splice(bulletIdx, 1);
+            return;
+        } else if (this.outOfBounds()) {
+            bullets = bullets.splice(bulletIdx, 1);
             return;
         }
         

@@ -10,15 +10,18 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
         this.bullets = [];
+        this.zombies = [];
     }
 
     animate(){
         this.map.animate(this.ctx);
         this.player.animate(this.ctx);
-        // this.zombie.animate(this.ctx, this.player);
         this.bullets.forEach(bullet => {
-            bullet.animate(this.ctx, this.bullets)
+            bullet.animate(this.ctx, this.bullets, this.zombies)
         });
+        this.zombies.forEach(zombie => {
+            zombie.animate(this.ctx, this.player);
+        })
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
@@ -28,7 +31,7 @@ export default class Game {
         this.running = false;
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
-        // this.zombie = new Zombie(this.dimensions, this.player);
+        this.zombies.push(new Zombie(this.dimensions, this.player));
         this.animate();
     }
 
