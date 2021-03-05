@@ -20,6 +20,8 @@ export default class Zombie {
         const posX = this.posX;
         const posY = this.posY;
         
+        //Transform is moving the canvas to pos
+        //thus everything following is drawn at 0 0
         ctx.setTransform(1, 0, 0, 1, posX, posY)
         ctx.rotate(this.angle);
 

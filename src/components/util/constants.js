@@ -19,3 +19,7 @@ export const ZOMBIE = {
     RADIUS: 14
 }
 
+export const BULLET = {
+    RADIUS: 3,
+    SPEED: 5
+}
