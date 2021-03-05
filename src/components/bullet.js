@@ -33,7 +33,7 @@ export default class Bullet {
         }
     }
 
-    outOfBounds(WALLS) {
+    outOfBounds() {
         const radius = BULLET.RADIUS;
         const bullet = this.bulletBounds();
         const outOfContainer = (this.posX > this.dimensions.width + radius ||
@@ -41,7 +41,15 @@ export default class Bullet {
             this.posX < 0 - radius ||
             this.posY < 0 - radius);
         for (let i = 0; i < WALLS.length; i++) {
-            if (overlap(bullet, WALLS[i])) return true;
+            const wallRect = {};
+            const wall = WALLS[i];
+            wallRect.left = wall.posX;
+            wallRect.right = wall.posX + wall.width;
+            wallRect.top = wall.posY;
+            wallRect.bottom = wall.posY + wall.height;
+            if (overlap(bullet, wallRect).type !== null) {
+                return true;
+            };
         }
         return outOfContainer;
     }
@@ -53,7 +61,7 @@ export default class Bullet {
             bullets = bullets.splice(idx, 1);
             return;
         }
-
+        
         this.posX += this.angle.x * BULLET.SPEED;
         this.posY += this.angle.y * BULLET.SPEED;
     }

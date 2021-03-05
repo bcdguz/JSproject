@@ -15,7 +15,7 @@ export default class Game {
     animate(){
         this.map.animate(this.ctx);
         this.player.animate(this.ctx);
-        this.zombie.animate(this.ctx, this.player);
+        // this.zombie.animate(this.ctx, this.player);
         this.bullets.forEach(bullet => {
             bullet.animate(this.ctx, this.bullets)
         });
@@ -28,7 +28,7 @@ export default class Game {
         this.running = false;
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
-        this.zombie = new Zombie(this.dimensions, this.player);
+        // this.zombie = new Zombie(this.dimensions, this.player);
         this.animate();
     }
 
