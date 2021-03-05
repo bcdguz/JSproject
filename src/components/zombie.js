@@ -25,10 +25,27 @@ export default class Zombie {
 
         ctx.beginPath();
         ctx.fillStyle = "#00cc44";
+        ctx.strokeStyle = "#00cc44"
         ctx.arc(0, 0, ZOMBIE.RADIUS, 0, Math.PI * 2);
         ctx.fill();
-        ctx.stroke();
+        ctx.stroke()
 
+        // Hands
+        ctx.beginPath();
+        ctx.strokeStyle = "#00cc44"
+        ctx.lineCap = "round"
+        ctx.lineWidth = 4
+        ctx.moveTo(0, 0 + ZOMBIE.RADIUS)
+        ctx.lineTo(20, 10)
+        ctx.stroke()
+
+        ctx.beginPath();
+        ctx.strokeStyle = "00cc44"
+        ctx.lineCap = "round"
+        ctx.lineWidth = 4
+        ctx.moveTo(0, 0 - ZOMBIE.RADIUS)
+        ctx.lineTo(20, -10)
+        ctx.stroke()
 
         ctx.restore()
     }
