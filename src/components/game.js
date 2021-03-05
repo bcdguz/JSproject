@@ -24,6 +24,13 @@ export default class Game {
         // this.zombies.forEach(zombie => {
         //     zombie.animate(this.ctx, this.player);
         // })
+        this.level.animate()
+
+        if (this.level.gameOver()) {
+            alert("game over!")
+            this.running = false;
+        }
+
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
@@ -31,6 +38,7 @@ export default class Game {
 
     restart(){
         this.running = false;
+        this.level = new Level(this.canvasEl, this.ctx, this.dimensions)
         // this.map = new Map(this.dimensions);
         // this.player = new Player(this.dimensions);
         // this.zombies.push(new Zombie(this.dimensions, this.player));

@@ -3,14 +3,20 @@ import Map from './map';
 import Zombie from './zombie';
 import Bullet from './bullet';
 import mousePointer from './util/mouse_pointer';
+import { overlap } from './util/overlap'
 
 export default class Level {
-    constructor(ctx, dimensions){
+    constructor(canvas, ctx, dimensions){
+        this.canvas = canvas;
         this.ctx = ctx;
         this.dimensions = dimensions;
         this.wave = 1;
         this.bullets = [];
         this.zombies = [];
+        this.start();
+        this.moveListener();
+        this.lookListener();
+        this.bulletListener();
     }
 
     animate() {
@@ -24,13 +30,23 @@ export default class Level {
         })
     }
 
+    gameOver() {
+        const player = this.player.playerBounds();
+        for (let i = 0; i < this.zombies.length; i++) {
+            const zombie = this.zombies[i].zombieBounds();
+            if (overlap(player, zombie).type !== null) {
+                return true;
+            }
+        }
+        return false
+    }
+
     start() {
         this.running = false;
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
         this.zombies.push(new Zombie(this.dimensions, this.player));
         this.zombies.push(new Zombie(this.dimensions, this.player));
-        this.animate();
     }
 
     moveBinds(e) {
@@ -74,7 +90,7 @@ export default class Level {
 
     lookListener() {
         document.addEventListener("mousemove", (e) => {
-            let dir = mousePointer(this.canvasEl, e);
+            let dir = mousePointer(this.canvas, e);
             this.player.look(dir);
         })
     }

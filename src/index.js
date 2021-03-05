@@ -6,7 +6,4 @@ window.addEventListener("DOMContentLoaded", () => {
     const game = new Game(canvas);
     game.restart();
     game.play();
-    game.moveListener();
-    game.lookListener();
-    game.bulletListener();
 })
