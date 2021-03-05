@@ -5,8 +5,10 @@ export default class Zombie {
     constructor(dimensions, player){
         this.dimensions = dimensions;
         this.posX = dimensions.width - 20;
-        this.posY = dimensions.height/2;
+        this.posY = Math.random() * (dimensions.height - 10) + 10;
         this.rotate(player);
+        this.health = ZOMBIE.ZOMB_HEALTH;
+        this.color = { 3: "#0E9C03", 2: "#8BE402", 1: "#CDDE09"};
     }
 
     animate(ctx, player) {
@@ -15,26 +17,34 @@ export default class Zombie {
         this.drawZombie(ctx);
     }
 
+    takeDamage(zombies) {
+        this.health--;
+        if (this.health === 0) {
+            const idx = zombies.indexOf(this);
+            zombies = zombies.splice(idx, 1);
+        }
+    }
+
     drawZombie(ctx) {
         ctx.save();
         const posX = this.posX;
         const posY = this.posY;
-        
+        const color = this.color[this.health];
         //Transform is moving the canvas to pos
         //thus everything following is drawn at 0 0
         ctx.setTransform(1, 0, 0, 1, posX, posY)
         ctx.rotate(this.angle);
 
         ctx.beginPath();
-        ctx.fillStyle = "#00cc44";
-        ctx.strokeStyle = "#00cc44"
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color
         ctx.arc(0, 0, ZOMBIE.RADIUS, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke()
 
         // Hands
         ctx.beginPath();
-        ctx.strokeStyle = "#00cc44"
+        ctx.strokeStyle = color
         ctx.lineCap = "round"
         ctx.lineWidth = 4
         ctx.moveTo(0, 0 + ZOMBIE.RADIUS)
@@ -42,7 +52,7 @@ export default class Zombie {
         ctx.stroke()
 
         ctx.beginPath();
-        ctx.strokeStyle = "00cc44"
+        ctx.strokeStyle = color
         ctx.lineCap = "round"
         ctx.lineWidth = 4
         ctx.moveTo(0, 0 - ZOMBIE.RADIUS)

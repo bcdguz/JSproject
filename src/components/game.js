@@ -32,6 +32,7 @@ export default class Game {
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
         this.zombies.push(new Zombie(this.dimensions, this.player));
+        this.zombies.push(new Zombie(this.dimensions, this.player));
         this.animate();
     }
 

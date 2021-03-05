@@ -57,23 +57,23 @@ export default class Bullet {
     hitZombie(zombies) {
         const bullet = this.bulletBounds();
         for (let i = 0; i < zombies.length; i++) {
-            const zombie = zombies[i].zombieBounds();
-            if (overlap(bullet, zombie).type !== null) return i;
+            const zombie = zombies[i];
+            const zombBound = zombie.zombieBounds();
+            if (overlap(bullet, zombBound).type !== null) {
+                zombie.takeDamage(zombies);
+                return true;
+            };
         }
-        return -1;
+        return false;
     }
 
     update(bullets, zombies) {
-        const zombieIdx = this.hitZombie(zombies);
         const bulletIdx = bullets.indexOf(this);
-        if (zombieIdx != -1) {
-            zombies = zombies.splice(zombieIdx, 1);
-            bullets = bullets.splice(bulletIdx, 1);
-            return;
-        } else if (this.outOfBounds()) {
+        if (this.hitZombie(zombies) || this.outOfBounds()) {
             bullets = bullets.splice(bulletIdx, 1);
             return;
         }
+
         
         this.posX += this.angle.x * BULLET.SPEED;
         this.posY += this.angle.y * BULLET.SPEED;
