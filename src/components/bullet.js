@@ -1,4 +1,5 @@
-import { BULLET } from './util/constants';
+import { BULLET, WALLS } from './util/constants';
+import { overlap } from './util/overlap';
 
 export default class Bullet {
     constructor(x, y, angle, dimensions) {
@@ -22,12 +23,27 @@ export default class Bullet {
         ctx.restore();
     }
 
-    outOfBounds() {
+    bulletBounds() {
+        const midX = this.posX;
+        const midY = this.posY;
         const radius = BULLET.RADIUS;
-        return (this.posX > this.dimensions.width + radius ||
+        return {
+            top: midY - radius, bottom: midY + radius,
+            left: midX - radius, right: midX + radius
+        }
+    }
+
+    outOfBounds(WALLS) {
+        const radius = BULLET.RADIUS;
+        const bullet = this.bulletBounds();
+        const outOfContainer = (this.posX > this.dimensions.width + radius ||
             this.posY > this.dimensions.height + radius ||
             this.posX < 0 - radius ||
-            this.posY < 0 - radius)
+            this.posY < 0 - radius);
+        for (let i = 0; i < WALLS.length; i++) {
+            if (overlap(bullet, WALLS[i])) return true;
+        }
+        return outOfContainer;
     }
 
     update(bullets) { // add zombies
