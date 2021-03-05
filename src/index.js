@@ -8,4 +8,5 @@ window.addEventListener("DOMContentLoaded", () => {
     game.play();
     game.moveListener();
     game.lookListener();
+    game.bulletListener();
 })

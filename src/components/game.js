@@ -16,7 +16,9 @@ export default class Game {
         this.map.animate(this.ctx);
         this.player.animate(this.ctx);
         this.zombie.animate(this.ctx, this.player);
-
+        this.bullets.forEach(bullet => {
+            bullet.animate(this.ctx, this.bullets)
+        });
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
@@ -78,6 +80,17 @@ export default class Game {
         document.addEventListener("mousemove", (e) => {
             let dir = mousePointer(this.canvasEl, e);
             this.player.look(dir);
+        })
+    }
+
+    bulletListener(){
+        const bullets = this.bullets
+        const player = this.player
+        document.addEventListener("click", () => {
+            bullets.push(
+                new Bullet(player.playerPosX, player.playerPosY,
+                    player.angle, this.dimensions)
+            )
         })
     }
 }

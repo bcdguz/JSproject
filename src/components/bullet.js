@@ -8,26 +8,29 @@ export default class Bullet {
         this.posY = y + this.angle.y * 40;
     }
 
-    animate(ctx, bullets, zombies) {
-        this.update(bullets, zombies);
+    animate(ctx, bullets) {
+        this.update(bullets); //add zombies
         this.drawBullet(ctx);
     }
 
     drawBullet(ctx) {
+        ctx.save();
         ctx.beginPath();
-        ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.posX, this.posY, BULLET.RADIUS, 0, Math.PI * 2);
         ctx.fillStyle = "black";
         ctx.fill();
+        ctx.restore();
     }
 
     outOfBounds() {
-        return (this.posX > this.dimensions.width + this.radius ||
-            this.posY > this.dimensions.height + this.radius ||
-            this.posX < 0 - this.radius ||
-            this.posY < 0 - this.radius)
+        const radius = BULLET.RADIUS;
+        return (this.posX > this.dimensions.width + radius ||
+            this.posY > this.dimensions.height + radius ||
+            this.posX < 0 - radius ||
+            this.posY < 0 - radius)
     }
 
-    update(bullets, zombies) {
+    update(bullets) { // add zombies
         //Remove bullet if it goes out of screen
         if (this.outOfBounds()) {
             const idx = bullets.indexOf(this);
