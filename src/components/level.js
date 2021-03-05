@@ -47,29 +47,34 @@ export default class Level {
     }
 
     levelOver() {
-        if (this.player.kills === this.totalZombies) alert("level complete")
+        if (this.player.kills === this.totalZombies) {
+            this.wave++;
+            this.totalZombies = this.wave * 2;
+            this.start();
+        }
     }
 
 
     start() {
-        this.running = false;
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
+        this.spawned = 0;
         this.spawnZombies();
+        this.animate();
     }
 
     spawnZombies() {
-        let spawn1 = setTimeout(() => {
+        let spawn1 = setInterval(() => {
             if (this.spawned === this.totalZombies) {
-                clearTimeout(spawn1);
+                clearInterval(spawn1);
             } else {
                 this.zombies.push(new Zombie(this.dimensions, this.player));
                 this.spawned++;
             }
         }, 1500)
-        let spawn2 = setTimeout(() => {
+        let spawn2 = setInterval(() => {
             if (this.spawned === this.totalZombies) {
-                clearTimeout(spawn2);
+                clearInterval(spawn2);
             } else {
                 this.zombies.push(new Zombie(this.dimensions, this.player));
                 this.spawned++;
@@ -126,11 +131,10 @@ export default class Level {
 
     bulletListener() {
         const bullets = this.bullets
-        const player = this.player
         document.addEventListener("click", () => {
             bullets.push(
-                new Bullet(player.playerPosX, player.playerPosY,
-                    player.angle, this.dimensions)
+                new Bullet(this.player.playerPosX, this.player.playerPosY,
+                    this.player.angle, this.dimensions)
             )
         })
     }
