@@ -1,6 +1,7 @@
 import Player from './player';
 import Map from './map';
 import Zombie from './zombie';
+import Bullet from './bullet';
 import mousePointer from './util/mouse_pointer';
 
 export default class Game {
@@ -8,7 +9,7 @@ export default class Game {
         this.canvasEl = canvas;
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
-        
+        this.bullets = [];
     }
 
     animate(){

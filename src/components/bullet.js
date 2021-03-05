@@ -8,6 +8,11 @@ export default class Bullet {
         this.posY = y + this.angle.y * 40;
     }
 
+    animate(ctx, bullets, zombies) {
+        this.update(bullets, zombies);
+        this.drawBullet(ctx);
+    }
+
     drawBullet(ctx) {
         ctx.beginPath();
         ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
@@ -22,7 +27,7 @@ export default class Bullet {
             this.posY < 0 - this.radius)
     }
 
-    move(bullets, zombies) {
+    update(bullets, zombies) {
         //Remove bullet if it goes out of screen
         if (this.outOfBounds()) {
             const idx = bullets.indexOf(this);
