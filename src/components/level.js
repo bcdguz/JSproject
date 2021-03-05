@@ -11,8 +11,12 @@ export default class Level {
         this.ctx = ctx;
         this.dimensions = dimensions;
         this.wave = 1;
+        this.totalZombies = this.wave * 2;
+        this.spawned = 0;
         this.bullets = [];
         this.zombies = [];
+
+        //start first level and begin listening
         this.start();
         this.moveListener();
         this.lookListener();
@@ -45,8 +49,26 @@ export default class Level {
         this.running = false;
         this.map = new Map(this.dimensions);
         this.player = new Player(this.dimensions);
-        this.zombies.push(new Zombie(this.dimensions, this.player));
-        this.zombies.push(new Zombie(this.dimensions, this.player));
+        this.spawnZombies();
+    }
+
+    spawnZombies() {
+        let spawn1 = setTimeout(() => {
+            if (this.spawned === this.wave * 2) {
+                clearTimeout(spawn1);
+            } else {
+                this.zombies.push(new Zombie(this.dimensions, this.player));
+                this.spawned++;
+            }
+        }, 1500)
+        let spawn2 = setTimeout(() => {
+            if (this.spawned === this.wave * 2) {
+                clearTimeout(spawn2);
+            } else {
+                this.zombies.push(new Zombie(this.dimensions, this.player));
+                this.spawned++;
+            }
+        }, 3000)
     }
 
     moveBinds(e) {
@@ -82,6 +104,7 @@ export default class Level {
         }
     }
 
+    //event listeners
     moveListener() {
         const moveBound = this.moveBinds.bind(this);
         document.addEventListener("keydown", moveBound);
