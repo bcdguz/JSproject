@@ -24,13 +24,14 @@ export default class Level {
     }
 
     animate() {
+        this.levelOver();
         this.map.animate(this.ctx);
         this.player.animate(this.ctx);
         this.bullets.forEach(bullet => {
             bullet.animate(this.ctx, this.bullets, this.zombies)
         });
         this.zombies.forEach(zombie => {
-            zombie.animate(this.ctx, this.player);
+            zombie.animate(this.ctx);
         })
     }
 
@@ -45,6 +46,11 @@ export default class Level {
         return false
     }
 
+    levelOver() {
+        if (this.player.kills === this.totalZombies) alert("level complete")
+    }
+
+
     start() {
         this.running = false;
         this.map = new Map(this.dimensions);
@@ -54,7 +60,7 @@ export default class Level {
 
     spawnZombies() {
         let spawn1 = setTimeout(() => {
-            if (this.spawned === this.wave * 2) {
+            if (this.spawned === this.totalZombies) {
                 clearTimeout(spawn1);
             } else {
                 this.zombies.push(new Zombie(this.dimensions, this.player));
@@ -62,7 +68,7 @@ export default class Level {
             }
         }, 1500)
         let spawn2 = setTimeout(() => {
-            if (this.spawned === this.wave * 2) {
+            if (this.spawned === this.totalZombies) {
                 clearTimeout(spawn2);
             } else {
                 this.zombies.push(new Zombie(this.dimensions, this.player));
