@@ -6,7 +6,7 @@ export default class Zombie {
         this.player = player;
         this.dimensions = dimensions;
         this.posX = dimensions.width - 20;
-        this.posY = Math.random() * (dimensions.height - 10) + 10;
+        this.posY = Math.random() * (dimensions.height - 20) + 10;
         this.rotate(player);
         this.health = ZOMBIE.ZOMB_HEALTH;
         this.color = { 3: "#0E9C03", 2: "#8BE402", 1: "#CDDE09"};

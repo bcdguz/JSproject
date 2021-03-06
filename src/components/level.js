@@ -129,13 +129,17 @@ export default class Level {
         })
     }
 
+    fireBullet() {
+        this.bullets.push(
+            new Bullet(this.player.playerPosX, this.player.playerPosY,
+                this.player.angle, this.dimensions)
+        )
+    }
+
     bulletListener() {
-        const bullets = this.bullets
+        const fireBullet = this.fireBullet.bind(this);
         document.addEventListener("click", () => {
-            bullets.push(
-                new Bullet(this.player.playerPosX, this.player.playerPosY,
-                    this.player.angle, this.dimensions)
-            )
+            fireBullet();
         })
     }
 }
