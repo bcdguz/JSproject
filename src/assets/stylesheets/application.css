@@ -1,0 +1,6 @@
+/* css reset */
+@import "reset.css";
+@import "font.css";
+
+@import "./component_styles/main.css";
+@import "./component_styles/header.css";

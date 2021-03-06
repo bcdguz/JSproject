@@ -4,6 +4,6 @@ import Game from './components/game';
 window.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('zombo-game');
     const game = new Game(canvas);
-    // game.restart();
+    game.restart();
     // game.play();
 })
