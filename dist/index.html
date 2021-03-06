@@ -4,18 +4,31 @@
 <head>
     <meta charset="utf-8" />
     <title>Getting Started</title>
+    <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/game.css" />
     <script type="application/javascript" src="./main.js"></script>
 </head>
 
 <body>
-    <h1>ZOMBIES</h1>
-    <h2 id="level-title"></h2>
-    <canvas id="zombo-game" height="600" width="850"></canvas>
+    <header>
+        <h1 class="game-title">ZOMBIES</h1>
+    </header>
+
+    <div class="splash-page">
+
+    </div>
+
+    <canvas class="game-content">
+        <h2 id="level-title"></h2>
+    </canvas>
+    <div class="canvas-container">
+        <canvas id="zombo-game" height="600" width="850"></canvas>
+    </div>
     
     <div style="display: none;">
-        <img id="pistol" src="../src/assets/pistol.png" alt="pistol-image">
-        <img id="wall" src="../src/assets/wall.png" alt="wall-image">
-        <img id="background" src="../src/assets/background.jpg" alt="background">
+        <img id="pistol" src="../src/assets/images/pistol.png" alt="pistol-image">
+        <img id="wall" src="../src/assets/images/wall.png" alt="wall-image">
+        <img id="background" src="../src/assets/images/background.jpg" alt="background">
     </div>
 </body>
 
