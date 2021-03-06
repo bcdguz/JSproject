@@ -9,6 +9,7 @@ export default class Player {
         this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.gun = document.getElementById('pistol');
+        this.kills = 0;
     }
 
     animate(ctx){

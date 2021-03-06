@@ -3,17 +3,18 @@ import { ZOMBIE, WALLS } from './util/constants';
 
 export default class Zombie {
     constructor(dimensions, player){
+        this.player = player;
         this.dimensions = dimensions;
         this.posX = dimensions.width - 20;
-        this.posY = Math.random() * (dimensions.height - 10) + 10;
+        this.posY = Math.random() * (dimensions.height - 20) + 10;
         this.rotate(player);
         this.health = ZOMBIE.ZOMB_HEALTH;
         this.color = { 3: "#0E9C03", 2: "#8BE402", 1: "#CDDE09"};
     }
 
-    animate(ctx, player) {
-        this.moveZombie(player);
-        this.collisionCheck(player);
+    animate(ctx) {
+        this.moveZombie(this.player);
+        this.collisionCheck(this.player);
         this.drawZombie(ctx);
     }
 
@@ -22,6 +23,7 @@ export default class Zombie {
         if (this.health === 0) {
             const idx = zombies.indexOf(this);
             zombies = zombies.splice(idx, 1);
+            this.player.kills++;
         }
     }
 
