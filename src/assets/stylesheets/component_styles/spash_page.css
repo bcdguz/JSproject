@@ -5,14 +5,31 @@
     align-items: center;
     width: 900px;
     height: 600px;
-    border: 1px solid white;
+    border: 3px solid #0E9C03;
 }
 
 .splash-page h1 {
     font-size: 90px;
-    margin: 15px;
+    margin: 30px;
 }
 
 .splash-page p {
-    
+    text-align: center;
+    margin: 0 30px;
+    font-size: 40px;
+}
+
+.splash-links {
+    margin-top: 15px;
+}
+
+.splash-links li {
+    margin: 50px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.splash-links li:hover {
+    cursor: pointer;
+    color: #0E9C03;
 }
