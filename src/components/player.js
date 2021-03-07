@@ -10,7 +10,7 @@ export default class Player {
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.kills = 0;
         this.gun = document.getElementById('pistol');
-        this.hat = document.getElementById('party-hat');
+        this.hat = document.getElementById('hat');
     }
 
     animate(ctx){
@@ -39,7 +39,7 @@ export default class Player {
         ctx.drawImage(this.gun, 5, - 3, 28, 19);
 
         //accessory
-        ctx.drawImage(this.hat, -13, -28, 26, 20);
+        ctx.drawImage(this.hat, -38, -42, 80, 55);
         
         ctx.restore();
     }
