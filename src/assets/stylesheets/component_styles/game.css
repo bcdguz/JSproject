@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.game-container canvas {
+    cursor: crosshair;
+}
+
 .sidebar {
     border: 3px solid #0E9C03;
     display: flex;

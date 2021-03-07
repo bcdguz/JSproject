@@ -1,0 +1,52 @@
+.controls-page {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    width: 900px;
+    height: 600px;
+    border: 3px solid #0E9C03;
+}
+
+.controls-head {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.controls-head h1 {
+    font-size: 90px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.controls-head i {
+    font-size: 45px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.controls-head i:hover {
+    color: #0E9C03;
+    cursor: pointer;
+}
+
+.controls-demo {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.instructions li {
+    font-size: 40px;
+}
+
+.demo {
+    width: 500px;
+}

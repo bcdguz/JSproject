@@ -7,7 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById('play-button');
     const splashPage = document.getElementsByClassName('splash-page')[0];
     const gameContainer = document.getElementsByClassName('game-container')[0];
-    
+    const controlsButton = document.getElementById('controls-button');
+
     
     
     game.restart();
@@ -16,7 +17,10 @@ window.addEventListener("DOMContentLoaded", () => {
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
-        game.play();
+        // game.play();
     })
 
+    controlsButton.addEventListener("click", () => {
+        
+    })
 })
