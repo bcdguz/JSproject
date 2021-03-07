@@ -8,8 +8,9 @@ export default class Player {
         this.playerPosX = dimensions.width/8;
         this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
-        this.gun = document.getElementById('pistol');
         this.kills = 0;
+        this.gun = document.getElementById('pistol');
+        this.hat = document.getElementById('party-hat');
     }
 
     animate(ctx){
@@ -36,6 +37,9 @@ export default class Player {
         
         //weapon
         ctx.drawImage(this.gun, 5, - 3, 28, 19);
+
+        //accessory
+        ctx.drawImage(this.hat, -13, -28, 26, 20);
         
         ctx.restore();
     }

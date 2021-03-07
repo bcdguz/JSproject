@@ -11,12 +11,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const controlsPage = document.getElementsByClassName('controls-page')[0];
     const backButton = document.getElementById('back-arrow');
     
-    game.restart();
-    // game.play();
-
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
+        game.restart();
         game.play();
     })
 
