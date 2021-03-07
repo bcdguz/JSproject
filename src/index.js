@@ -13,8 +13,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const backgroundMusic = document.getElementById('song');
     const gunSound = document.getElementById('gun-sound');
     const audioButton = document.getElementById('audio-button');
-    const volumeControl = document.getElementById('volume-control')
-    
+    const volumeControl = document.getElementById('volume-control');
+    const playAgain = document.getElementById('play-again-button');
+    const restartMenu = document.getElementsByClassName('modal')[0];
+
+
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
@@ -53,5 +56,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     volumeControl.addEventListener("change", (e) => {
         backgroundMusic.volume = e.currentTarget.value / 100;
+    })
+
+    playAgain.addEventListener("click", () => {
+        restartMenu.style.display = "none";
+        game.restart();
+        game.play();
     })
 })

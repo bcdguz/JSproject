@@ -12,7 +12,7 @@ export default class Game {
     }
 
     animate(){
-        this.levelTitle.innerHTML = `Level: ${this.level.wave}`
+        this.levelTitle.innerHTML = `Wave ${this.level.wave}`
         this.level.animate();
 
         if (this.level.gameOver()) {

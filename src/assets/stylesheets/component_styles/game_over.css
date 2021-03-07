@@ -22,7 +22,8 @@
 
 .game-over-container p {
     font-size: 40px;
-    margin-bottom: 15px;
+    margin: 15px 0;
+    color: rgb(204, 6, 6);
 }
 
 .game-over-container img {
@@ -31,4 +32,9 @@
 
 #play-again-button {
     font-size: 45px;
+}
+
+#play-again-button:hover {
+    color: #0E9C03;
+    cursor: pointer;
 }
