@@ -139,7 +139,6 @@ export default class Level {
 
     gunSound() {
         const sound = document.getElementById('gun-sound');
-        sound.volume = 0.7;
         sound.play();
     }
 

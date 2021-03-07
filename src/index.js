@@ -11,17 +11,22 @@ window.addEventListener("DOMContentLoaded", () => {
     const controlsPage = document.getElementsByClassName('controls-page')[0];
     const backButton = document.getElementById('back-arrow');
     const backgroundMusic = document.getElementById('song');
+    const gunSound = document.getElementById('gun-sound');
     const audioButton = document.getElementById('audio-button');
     const volumeControl = document.getElementById('volume-control')
-    game.restart();
-
+    
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
-        game.play();
+
+        //Setting background music to a reasonable starting level
         volumeControl.value = 25;
         backgroundMusic.volume = 0.25;
         backgroundMusic.play();
+
+        //begin the game
+        game.restart();
+        game.play();
     })
 
     controlsButton.addEventListener("click", () => {
@@ -37,9 +42,11 @@ window.addEventListener("DOMContentLoaded", () => {
     audioButton.addEventListener("click", () => {
         if (backgroundMusic.muted) {
             backgroundMusic.muted = false;
+            gunSound.muted = false;
             audioButton.classList.remove("muted");
         } else {
             backgroundMusic.muted = true;
+            gunSound.muted = true;
             audioButton.classList.add("muted");
         }
     })
