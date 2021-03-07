@@ -16,8 +16,20 @@
     width: 100px;
 }
 
-.sidebar i {
+.fas {
     font-size: 40px;
+}
+
+.fas:hover {
+    text-shadow: 0 0 10px #0E9C03;
+}
+
+.muted{
+    color: red;
+}
+
+.muted:hover {
+    text-shadow: 0 0 10px #0E9C03;
 }
 
 #level-title {

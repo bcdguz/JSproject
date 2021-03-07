@@ -10,12 +10,15 @@ window.addEventListener("DOMContentLoaded", () => {
     const controlsButton = document.getElementById('controls-button');
     const controlsPage = document.getElementsByClassName('controls-page')[0];
     const backButton = document.getElementById('back-arrow');
+    const backgroundMusic = document.getElementById('song');
+    const audioButton = document.getElementById('audio-button');
     
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
         game.restart();
         game.play();
+        backgroundMusic.play();
     })
 
     controlsButton.addEventListener("click", () => {
@@ -26,5 +29,15 @@ window.addEventListener("DOMContentLoaded", () => {
     backButton.addEventListener("click", () => {
         controlsPage.classList.add("hidden");
         splashPage.classList.remove("hidden");
+    })
+
+    audioButton.addEventListener("click", () => {
+        if (backgroundMusic.muted) {
+            backgroundMusic.muted = false;
+            audioButton.classList.remove("muted");
+        } else {
+            backgroundMusic.muted = true;
+            audioButton.classList.add("muted");
+        }
     })
 })

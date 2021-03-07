@@ -148,15 +148,13 @@ export default class Level {
         let reloading = false;
         document.addEventListener("click", () => {
             if (reloading) {
-                return;
+                return; //A click will do nothing
             }
             reloading = true;
             fireBullet();
             gunSound();
-
-            setTimeout(() => {
-                reloading = false;
-            }, PLAYER.FIRE_RATE);
+            //Will set reloading to false after timeout
+            setTimeout(() => {reloading = false}, PLAYER.FIRE_RATE);
         })
     }
 }
