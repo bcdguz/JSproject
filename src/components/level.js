@@ -3,7 +3,8 @@ import Map from './map';
 import Zombie from './zombie';
 import Bullet from './bullet';
 import mousePointer from './util/mouse_pointer';
-import { overlap } from './util/overlap'
+import { overlap } from './util/overlap';
+import { PLAYER } from './util/constants';
 
 export default class Level {
     constructor(canvas, ctx, dimensions){
@@ -136,10 +137,26 @@ export default class Level {
         )
     }
 
+    gunSound() {
+        const sound = document.getElementById('gun-sound');
+        sound.play();
+    }
+
     bulletListener() {
         const fireBullet = this.fireBullet.bind(this);
+        const gunSound = this.gunSound.bind(this);
+        let reloading = false;
         document.addEventListener("click", () => {
+            if (reloading) {
+                return;
+            }
+            reloading = true;
             fireBullet();
+            gunSound();
+
+            setTimeout(() => {
+                reloading = false;
+            }, PLAYER.FIRE_RATE);
         })
     }
 }
