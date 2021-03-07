@@ -1,4 +1,13 @@
 .game-title {
-    font-size: 100px;
+    font-size: 85px;
     margin: 10px;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+}
+
+.site-header img {
+    height: 60px;
 }
