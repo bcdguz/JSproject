@@ -3,10 +3,11 @@
 }
 
 .sidebar {
+    border: 3px solid #0E9C03;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 300px;
     width: 100px;
 }

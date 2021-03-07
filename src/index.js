@@ -4,6 +4,19 @@ import Game from './components/game';
 window.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('zombo-game');
     const game = new Game(canvas);
+    const playButton = document.getElementById('play-button');
+    const splashPage = document.getElementsByClassName('splash-page')[0];
+    const gameContainer = document.getElementsByClassName('game-container')[0];
+    
+    
+    
     game.restart();
     // game.play();
+
+    playButton.addEventListener("click", () => {
+        splashPage.classList.add('hidden');
+        gameContainer.classList.remove('hidden');
+        game.play();
+    })
+
 })
