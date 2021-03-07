@@ -124,7 +124,7 @@ export default class Level {
     }
 
     lookListener() {
-        document.addEventListener("mousemove", (e) => {
+        this.canvas.addEventListener("mousemove", (e) => {
             let dir = mousePointer(this.canvas, e);
             this.player.look(dir);
         })
@@ -139,6 +139,7 @@ export default class Level {
 
     gunSound() {
         const sound = document.getElementById('gun-sound');
+        sound.volume = 0.7;
         sound.play();
     }
 
@@ -146,7 +147,7 @@ export default class Level {
         const fireBullet = this.fireBullet.bind(this);
         const gunSound = this.gunSound.bind(this);
         let reloading = false;
-        document.addEventListener("click", () => {
+        this.canvas.addEventListener("click", () => {
             if (reloading) {
                 return; //A click will do nothing
             }

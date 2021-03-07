@@ -12,12 +12,15 @@ window.addEventListener("DOMContentLoaded", () => {
     const backButton = document.getElementById('back-arrow');
     const backgroundMusic = document.getElementById('song');
     const audioButton = document.getElementById('audio-button');
-    
+    const volumeControl = document.getElementById('volume-control')
+    game.restart();
+
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
-        game.restart();
         game.play();
+        volumeControl.value = 25;
+        backgroundMusic.volume = 0.25;
         backgroundMusic.play();
     })
 
@@ -39,5 +42,9 @@ window.addEventListener("DOMContentLoaded", () => {
             backgroundMusic.muted = true;
             audioButton.classList.add("muted");
         }
+    })
+
+    volumeControl.addEventListener("change", (e) => {
+        backgroundMusic.volume = e.currentTarget.value / 100;
     })
 })

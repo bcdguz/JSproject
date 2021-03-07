@@ -16,6 +16,10 @@
     width: 100px;
 }
 
+#volume-control {
+    width: 80px;
+}
+
 .fas {
     font-size: 40px;
 }
