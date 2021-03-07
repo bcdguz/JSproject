@@ -37,4 +37,5 @@
 #play-again-button:hover {
     color: #0E9C03;
     cursor: pointer;
+    text-shadow: 0 0 2px #97abee;
 }

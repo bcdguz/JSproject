@@ -15,7 +15,7 @@ export const PLAYER = {
 }
 
 export const ZOMBIE = {
-    ZOMB_SPEED: 0.5,
+    ZOMB_SPEED: 0.65,
     ZOMB_HEALTH: 3,
     RADIUS: 14
 }
