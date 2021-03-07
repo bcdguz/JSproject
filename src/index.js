@@ -8,8 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const splashPage = document.getElementsByClassName('splash-page')[0];
     const gameContainer = document.getElementsByClassName('game-container')[0];
     const controlsButton = document.getElementById('controls-button');
-
-    
+    const controlsPage = document.getElementsByClassName('controls-page')[0];
+    const backButton = document.getElementById('back-arrow');
     
     game.restart();
     // game.play();
@@ -17,10 +17,16 @@ window.addEventListener("DOMContentLoaded", () => {
     playButton.addEventListener("click", () => {
         splashPage.classList.add('hidden');
         gameContainer.classList.remove('hidden');
-        // game.play();
+        game.play();
     })
 
     controlsButton.addEventListener("click", () => {
-        
+        splashPage.classList.add("hidden");
+        controlsPage.classList.remove("hidden");
+    })
+
+    backButton.addEventListener("click", () => {
+        controlsPage.classList.add("hidden");
+        splashPage.classList.remove("hidden");
     })
 })
