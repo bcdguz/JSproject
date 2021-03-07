@@ -7,6 +7,8 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
         this.levelTitle = document.getElementById('level-title');
+        this.restartMenu = document.getElementsByClassName('modal')[0];
+        this.gameOverMsg = document.getElementById('game-over-p');
     }
 
     animate(){
@@ -14,13 +16,18 @@ export default class Game {
         this.level.animate();
 
         if (this.level.gameOver()) {
-            alert("game over!")
             this.running = false;
+            this.gameOverMenu();
         }
 
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
+    }
+
+    gameOverMenu() {
+        this.gameOverMsg.innerHTML = `Game Over! Waves survived ${this.level.wave}`;
+        this.restartMenu.style.display = "block";
     }
 
     restart(){

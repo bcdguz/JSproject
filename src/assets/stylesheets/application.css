@@ -2,13 +2,14 @@
 @import "reset.css";
 @import "font.css";
 
+/* components */
 @import "./component_styles/main.css";
 @import "./component_styles/header.css";
 @import "./component_styles/game.css";
 @import "./component_styles/spash_page.css";
 @import "./component_styles/controls.css";
 @import "./component_styles/footer.css";
-
+@import "./component_styles/game_over.css";
 
 
 /* hidden class at bottom for highest spec */
