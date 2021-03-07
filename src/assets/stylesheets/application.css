@@ -5,3 +5,10 @@
 @import "./component_styles/main.css";
 @import "./component_styles/header.css";
 @import "./component_styles/game.css";
+@import "./component_styles/spash_page.css";
+
+
+
+
+/* hidden class at bottom for highest spec */
+@import "./component_styles/hidden.css";
