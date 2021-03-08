@@ -13,11 +13,13 @@
 
 .game-over-container {
   background-color: rgb(32, 32, 32);
-  margin: 15% auto; 
+  margin: 10% auto; 
   padding: 20px;
   border: 3px solid #0E9C03;
   width: 60%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .game-over-container p {
@@ -28,13 +30,15 @@
 
 .game-over-container img {
     height: 150px;
+    width: auto;
 }
 
-#play-again-button {
+.game-over-container div {
     font-size: 45px;
+    margin: 10px 0;
 }
 
-#play-again-button:hover {
+.game-over-container div:hover {
     color: #0E9C03;
     cursor: pointer;
     text-shadow: 0 0 2px #97abee;

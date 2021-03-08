@@ -22,7 +22,7 @@ export const ZOMBIE = {
 
 export const BULLET = {
     RADIUS: 3,
-    SPEED: 4
+    SPEED: 5
 }
 
 export const FPS = 60;

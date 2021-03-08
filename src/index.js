@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const volumeControl = document.getElementById('volume-control');
     const playAgain = document.getElementById('play-again-button');
     const restartMenu = document.getElementsByClassName('modal')[0];
+    const homeButton = document.getElementById('home-button');
 
     //text to add glow affect
     const welcomeMsg = document.getElementById('welcome-message');
@@ -89,5 +90,11 @@ window.addEventListener("DOMContentLoaded", () => {
         restartMenu.style.display = "none";
         game.restart();
         game.play();
+    })
+
+    homeButton.addEventListener("click", () => {
+        restartMenu.style.display = "none";
+        gameContainer.classList.add("hidden");
+        splashPage.classList.remove("hidden");
     })
 })
