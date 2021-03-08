@@ -69,28 +69,28 @@ export default class Player {
 
             switch (collision.type) {
                 case "rightBot":
-                    if (pBound.right > wallRect.left + 2) {
+                    if (pBound.right > wallRect.left + 5) {
                         this.playerPosY = collision.bot - radius;
                     } else {
                         this.playerPosX = collision.right - radius;
                     }
                     break;
                 case "leftBot":
-                    if (pBound.left < wallRect.right - 2) {
+                    if (pBound.left < wallRect.right - 5) {
                         this.playerPosY = collision.bot - radius;
                     } else {
                         this.playerPosX = collision.left + radius;
                     }
                     break;
                 case "rightTop":
-                    if (pBound.right > wallRect.left + 2) {
+                    if (pBound.right > wallRect.left + 5) {
                         this.playerPosY = collision.top + radius;
                     } else {
                         this.playerPosX = collision.right - radius;
                     }
                     break;
                 case "leftTop":
-                    if (pBound.left < wallRect.right - 2) {
+                    if (pBound.left < wallRect.right - 5) {
                         this.playerPosY = collision.top + radius;
                     } else {
                         this.playerPosX = collision.left + radius;
