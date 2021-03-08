@@ -1,6 +1,7 @@
 # Zombies
 
 [Live Site!](https://bcdguz.github.io/Zombies/)
+
 ![Gif of game](src/assets/images/game_demo.gif)
 
 ## Overview
