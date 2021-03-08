@@ -117,6 +117,7 @@ export default class Zombie {
             switch (collision.type) {
                 case "rightBot":
                     if (zBound.right > wallRect.left + 2) {
+                        //Two is added to wallRect to adjust for animation time
                         this.posY = collision.bot - radius;
                         playerLeft ? (this.posX -= speed) : (this.posX += speed);
                     } else {

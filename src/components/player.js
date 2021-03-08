@@ -70,6 +70,7 @@ export default class Player {
             switch (collision.type) {
                 case "rightBot":
                     if (pBound.right > wallRect.left + 5) {
+                        //Five is added to wallRect to adjust for animation time
                         this.playerPosY = collision.bot - radius;
                     } else {
                         this.playerPosX = collision.right - radius;
