@@ -8,14 +8,14 @@
     integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../src/assets/stylesheets/application.css" />
-    <script type="application/javascript" src="./main.js"></script>
+    <link rel="stylesheet" href="src/assets/stylesheets/application.css" />
+    <script type="application/javascript" src="./bundle.js"></script>
 </head>
 
 <body>
     <header class="site-header">
         <h1 class="game-title">ZOMBIES</h1>
-        <img src="../src/assets/images/zombie.png" alt="zombie icon">
+        <img src="src/assets/images/zombie.png" alt="zombie icon">
     </header>
 
     <div class="splash-page">
@@ -42,7 +42,7 @@
                 <li>Left click to shoot</li>
                 <li>3 shots kills a zombie!</li>
             </ul>
-            <img class="demo" src="../src/assets/images/game_demo.gif" alt="game demo">
+            <img class="demo" src="src/assets/images/game_demo.gif" alt="game demo">
         </div>
     </div>
 
@@ -54,13 +54,13 @@
             <input id="volume-control" type="range">
         </div>
         <canvas id="zombo-game" height="600" width="850"></canvas>
-        <audio id="song" loop src="../src/assets/sounds/background-music.mp3"></audio>
-        <audio id="gun-sound" autoplay="false" src="../src/assets/sounds/gun_sound.mp3"></audio>
+        <audio id="song" loop src="src/assets/sounds/background-music.mp3"></audio>
+        <audio id="gun-sound" autoplay="false" src="src/assets/sounds/gun_sound.mp3"></audio>
     </div>
 
     <div class="modal">
         <div class="game-over-container">
-            <img src="../src/assets/images/zombie.png" alt="zombie icon">
+            <img src="src/assets/images/zombie.png" alt="zombie icon">
             <p id="game-over-p"></p>
             <div id="play-again-button">Play Again?</div>
             <div id="home-button">Home</div>
@@ -68,10 +68,10 @@
     </div>
     
     <div class="hidden">
-        <img id="pistol" src="../src/assets/images/pistol.png" alt="pistol-image">
-        <img id="wall" src="../src/assets/images/wall.png" alt="wall-image">
-        <img id="background" src="../src/assets/images/background.jpg" alt="background">
-        <img id="hat" src="../src/assets/images/hat.png" alt="hat">
+        <img id="pistol" src="src/assets/images/pistol.png" alt="pistol-image">
+        <img id="wall" src="src/assets/images/wall.png" alt="wall-image">
+        <img id="background" src="src/assets/images/background.jpg" alt="background">
+        <img id="hat" src="src/assets/images/hat.png" alt="hat">
     </div>
 
     <footer class="credit">
