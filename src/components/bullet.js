@@ -7,10 +7,11 @@ export default class Bullet {
         this.angle = { x: Math.cos(angle), y: Math.sin(angle)};
         this.posX = x + this.angle.x * 40;
         this.posY = y + this.angle.y * 40;
+        this.explosion = document.getElementById('explosion');
     }
 
     animate(ctx, bullets, zombies) {
-        this.update(bullets, zombies); //add zombies
+        this.update(bullets, zombies, ctx); //add zombies
         this.drawBullet(ctx);
     }
 
@@ -23,7 +24,13 @@ export default class Bullet {
         ctx.restore();
     }
 
-    bulletBounds() {
+    drawExplosion(ctx) {
+        const posX = this.posX - BULLET.RADIUS;
+        const posY = this.posY - BULLET.RADIUS;
+        ctx.drawImage(this.explosion, this.posX, this.posY, 30, 30);
+    }
+
+    bulletBounds(ctx) {
         const midX = this.posX;
         const midY = this.posY;
         const radius = BULLET.RADIUS;
@@ -33,7 +40,7 @@ export default class Bullet {
         }
     }
 
-    outOfBounds() {
+    outOfBounds(ctx) {
         const radius = BULLET.RADIUS;
         const bullet = this.bulletBounds();
         const outOfContainer = (this.posX > this.dimensions.width + radius ||
@@ -48,18 +55,20 @@ export default class Bullet {
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
             if (overlap(bullet, wallRect).type !== null) {
+                this.drawExplosion(ctx);
                 return true;
             };
         }
         return outOfContainer;
     }
 
-    hitZombie(zombies) {
+    hitZombie(zombies, ctx) {
         const bullet = this.bulletBounds();
         for (let i = 0; i < zombies.length; i++) {
             const zombie = zombies[i];
             const zombBound = zombie.zombieBounds();
             if (overlap(bullet, zombBound).type !== null) {
+                this.drawExplosion(ctx);
                 zombie.takeDamage(zombies);
                 return true;
             };
@@ -67,9 +76,9 @@ export default class Bullet {
         return false;
     }
 
-    update(bullets, zombies) {
+    update(bullets, zombies, ctx) {
         const bulletIdx = bullets.indexOf(this);
-        if (this.hitZombie(zombies) || this.outOfBounds()) {
+        if (this.hitZombie(zombies, ctx) || this.outOfBounds(ctx)) {
             bullets = bullets.splice(bulletIdx, 1);
             return;
         }
