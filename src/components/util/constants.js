@@ -11,7 +11,7 @@ export const WALLS = [
 export const PLAYER = {
     PLAYER_SPEED: 3.5,
     PLAYER_RADIUS: 14,
-    FIRE_RATE: 750 //ms between firing
+    FIRE_RATE: 675 //ms between firing
 }
 
 export const ZOMBIE = {
@@ -22,7 +22,7 @@ export const ZOMBIE = {
 
 export const BULLET = {
     RADIUS: 3,
-    SPEED: 5
+    SPEED: 5.5
 }
 
 export const FPS = 60;

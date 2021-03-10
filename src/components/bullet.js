@@ -11,8 +11,8 @@ export default class Bullet {
     }
 
     animate(ctx, bullets, zombies) {
-        this.update(bullets, zombies, ctx); //add zombies
         this.drawBullet(ctx);
+        this.update(bullets, zombies, ctx); //add zombies
     }
 
     drawBullet(ctx) {
@@ -25,7 +25,7 @@ export default class Bullet {
     }
 
     drawExplosion(ctx) {
-        const posX = this.posX - (BULLET.RADIUS + 15);
+        const posX = this.posX - (BULLET.RADIUS + 17);
         const posY = this.posY - (BULLET.RADIUS + 15);
         ctx.drawImage(this.explosion, posX, posY, 30, 30);
     }
@@ -40,7 +40,7 @@ export default class Bullet {
         }
     }
 
-    outOfBounds(ctx) {
+    outOfBounds() {
         const radius = BULLET.RADIUS;
         const bullet = this.bulletBounds();
         const outOfContainer = (this.posX > this.dimensions.width + radius ||
@@ -55,20 +55,18 @@ export default class Bullet {
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
             if (overlap(bullet, wallRect).type !== null) {
-                // this.drawExplosion(ctx);
                 return true;
             };
         }
         return outOfContainer;
     }
 
-    hitZombie(zombies, ctx) {
+    hitZombie(zombies) {
         const bullet = this.bulletBounds();
         for (let i = 0; i < zombies.length; i++) {
             const zombie = zombies[i];
             const zombBound = zombie.zombieBounds();
             if (overlap(bullet, zombBound).type !== null) {
-                // this.drawExplosion(ctx);
                 zombie.takeDamage(zombies);
                 return true;
             };
