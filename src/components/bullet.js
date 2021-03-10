@@ -25,9 +25,9 @@ export default class Bullet {
     }
 
     drawExplosion(ctx) {
-        const posX = this.posX - BULLET.RADIUS;
-        const posY = this.posY - BULLET.RADIUS;
-        ctx.drawImage(this.explosion, this.posX, this.posY, 30, 30);
+        const posX = this.posX - (BULLET.RADIUS + 15);
+        const posY = this.posY - (BULLET.RADIUS + 15);
+        ctx.drawImage(this.explosion, posX, posY, 30, 30);
     }
 
     bulletBounds(ctx) {
@@ -55,7 +55,7 @@ export default class Bullet {
             wallRect.top = wall.posY;
             wallRect.bottom = wall.posY + wall.height;
             if (overlap(bullet, wallRect).type !== null) {
-                this.drawExplosion(ctx);
+                // this.drawExplosion(ctx);
                 return true;
             };
         }
@@ -68,7 +68,7 @@ export default class Bullet {
             const zombie = zombies[i];
             const zombBound = zombie.zombieBounds();
             if (overlap(bullet, zombBound).type !== null) {
-                this.drawExplosion(ctx);
+                // this.drawExplosion(ctx);
                 zombie.takeDamage(zombies);
                 return true;
             };
@@ -80,6 +80,7 @@ export default class Bullet {
         const bulletIdx = bullets.indexOf(this);
         if (this.hitZombie(zombies, ctx) || this.outOfBounds(ctx)) {
             bullets = bullets.splice(bulletIdx, 1);
+            this.drawExplosion(ctx);
             return;
         }
 
