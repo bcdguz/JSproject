@@ -50,12 +50,12 @@ export default class Player {
         const player = this.playerBounds();
         for (let i = 0; i < zombies.length; i++) {
             const zombie = zombies[i].zombieBounds();
-            const damageDelta = Date.now() - this.timeOfDamage > 3000;
+            const damageDelta = Date.now() - this.timeOfDamage > 1000;
             if (overlap(player, zombie).type !== null && damageDelta) {
                 this.lives--;
                 console.log(this.lives);
                 this.timeOfDamage = Date.now();
-                return
+                return;
             }
         }
     }

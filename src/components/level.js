@@ -3,7 +3,6 @@ import Map from './map';
 import Zombie from './zombie';
 import Bullet from './bullet';
 import mousePointer from './util/mouse_pointer';
-import { overlap } from './util/overlap';
 import { PLAYER } from './util/constants';
 
 export default class Level {
@@ -39,14 +38,6 @@ export default class Level {
     gameOver() {
         this.player.loseLife(this.zombies);
         return this.player.lives === 0 ? true : false;
-        // const player = this.player.playerBounds();
-        // for (let i = 0; i < this.zombies.length; i++) {
-        //     const zombie = this.zombies[i].zombieBounds();
-        //     if (overlap(player, zombie).type !== null) {
-        //         return true;
-        //     }
-        // }
-        // return false
     }
 
     levelOver() {

@@ -16,15 +16,20 @@
     width: 100px;
 }
 
+.sidebar-lives {
+    display: flex;
+    align-items: center;
+}
+
 #volume-control {
     width: 80px;
 }
 
-.fas {
+#audio-button {
     font-size: 40px;
 }
 
-.fas:hover {
+#audio-button:hover {
     text-shadow: 0 0 10px #0E9C03;
 }
 

@@ -8,6 +8,7 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
         this.dimensions = {width: canvas.width, height: canvas.height};
         this.levelTitle = document.getElementById('level-title');
+        this.playerLives = document.getElementById('player-lives');
         this.restartMenu = document.getElementsByClassName('modal')[0];
         this.gameOverMsg = document.getElementById('game-over-p');
         this.prevDelta = 0;
@@ -25,7 +26,8 @@ export default class Game {
         }
         this.prevDelta = curr;
 
-        this.levelTitle.innerHTML = `Wave ${this.level.wave}`
+        this.levelTitle.innerHTML = `Wave ${this.level.wave}`;
+        this.playerLives.innerHTML = `${this.level.player.lives}`;
         this.level.animate();
 
         if (this.level.gameOver()) {
