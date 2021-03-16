@@ -9,7 +9,6 @@ export default class Player {
         this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.kills = 0;
-        this.lives = 3;
         this.gun = document.getElementById('pistol');
         this.hat = document.getElementById('hat');
         this.timeOfDamage = 0;
@@ -46,14 +45,13 @@ export default class Player {
         ctx.restore();
     }
 
-    loseLife(zombies){
+    loseLife(zombies, level){
         const player = this.playerBounds();
         for (let i = 0; i < zombies.length; i++) {
             const zombie = zombies[i].zombieBounds();
             const damageDelta = Date.now() - this.timeOfDamage > 1000;
             if (overlap(player, zombie).type !== null && damageDelta) {
-                this.lives--;
-                console.log(this.lives);
+                level.lives--;
                 this.timeOfDamage = Date.now();
                 return;
             }

@@ -27,7 +27,7 @@ export default class Game {
         this.prevDelta = curr;
 
         this.levelTitle.innerHTML = `Wave ${this.level.wave}`;
-        this.playerLives.innerHTML = `${this.level.player.lives}`;
+        this.playerLives.innerHTML = `${this.level.lives}`;
         this.level.animate();
 
         if (this.level.gameOver()) {
