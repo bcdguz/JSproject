@@ -23,6 +23,8 @@ window.addEventListener("DOMContentLoaded", () => {
     //text to add glow affect
     const welcomeMsg = document.getElementById('welcome-message');
     const controlsH = document.getElementById('controls-h');
+    const levelTitle = document.getElementById('level-title');
+    const livesTitle = document.getElementById('lives-title');
 
     const glow = () => {
         let i = 0;
@@ -31,6 +33,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const setGlow = (size) => {
             welcomeMsg.style.textShadow = `0 0 ${size}px #0E9C03`;
             controlsH.style.textShadow = `0 0 ${size}px #0E9C03`;
+            levelTitle.style.textShadow = `0 0 ${size}px #0E9C03`;
+            livesTitle.style.textShadow = `0 0 ${size}px #0E9C03`;
         }
 
         setInterval(()=> {
