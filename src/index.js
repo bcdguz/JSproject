@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Game from './components/game';
 
 window.addEventListener("DOMContentLoaded", () => {
