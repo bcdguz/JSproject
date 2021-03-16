@@ -12,7 +12,7 @@ export default class Player {
         this.lives = 3;
         this.gun = document.getElementById('pistol');
         this.hat = document.getElementById('hat');
-        this.takeDamage = this.loseLife;
+        this.timeOfDamage = 0;
     }
 
     animate(ctx){
@@ -50,13 +50,14 @@ export default class Player {
         const player = this.playerBounds();
         for (let i = 0; i < zombies.length; i++) {
             const zombie = zombies[i].zombieBounds();
-            if (overlap(player, zombie).type !== null) {
+            const damageDelta = Date.now() - this.timeOfDamage > 3000;
+            if (overlap(player, zombie).type !== null && damageDelta) {
                 this.lives--;
                 console.log(this.lives);
-                return true;
+                this.timeOfDamage = Date.now();
+                return
             }
         }
-        return false;
     }
 
     playerBounds(){

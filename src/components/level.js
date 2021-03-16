@@ -37,7 +37,7 @@ export default class Level {
     }
 
     gameOver() {
-        this.player.takeDamage(this.zombies);
+        this.player.loseLife(this.zombies);
         return this.player.lives === 0 ? true : false;
         // const player = this.player.playerBounds();
         // for (let i = 0; i < this.zombies.length; i++) {
