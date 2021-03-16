@@ -9,8 +9,10 @@ export default class Player {
         this.angle = Math.log(this.playerPosY,this.playerPosX);
         this.movement = {wKey: false, aKey: false, sKey: false, dKey: false};
         this.kills = 0;
+        this.lives = 3;
         this.gun = document.getElementById('pistol');
         this.hat = document.getElementById('hat');
+        this.takeDamage = this.loseLife;
     }
 
     animate(ctx){
@@ -42,6 +44,19 @@ export default class Player {
         ctx.drawImage(this.hat, -38, -42, 80, 55);
         
         ctx.restore();
+    }
+
+    loseLife(zombies){
+        const player = this.playerBounds();
+        for (let i = 0; i < zombies.length; i++) {
+            const zombie = zombies[i].zombieBounds();
+            if (overlap(player, zombie).type !== null) {
+                this.lives--;
+                console.log(this.lives);
+                return true;
+            }
+        }
+        return false;
     }
 
     playerBounds(){

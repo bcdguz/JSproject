@@ -37,14 +37,16 @@ export default class Level {
     }
 
     gameOver() {
-        const player = this.player.playerBounds();
-        for (let i = 0; i < this.zombies.length; i++) {
-            const zombie = this.zombies[i].zombieBounds();
-            if (overlap(player, zombie).type !== null) {
-                return true;
-            }
-        }
-        return false
+        this.player.takeDamage(this.zombies);
+        return this.player.lives === 0 ? true : false;
+        // const player = this.player.playerBounds();
+        // for (let i = 0; i < this.zombies.length; i++) {
+        //     const zombie = this.zombies[i].zombieBounds();
+        //     if (overlap(player, zombie).type !== null) {
+        //         return true;
+        //     }
+        // }
+        // return false
     }
 
     levelOver() {
