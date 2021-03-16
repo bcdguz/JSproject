@@ -18,7 +18,18 @@
 
 .sidebar-lives {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+.hearts {
+    display: flex;
+    margin-top: 10px;
+    color: red;
+}
+
+.hearts i {
+    margin-left: 10px;
 }
 
 #volume-control {
