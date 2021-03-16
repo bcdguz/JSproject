@@ -13,6 +13,7 @@ export default class Level {
         this.wave = 1;
         this.totalZombies = this.wave * 2;
         this.spawned = 0;
+        this.lives = 3
         this.bullets = [];
         this.zombies = [];
 
@@ -36,8 +37,8 @@ export default class Level {
     }
 
     gameOver() {
-        this.player.loseLife(this.zombies);
-        return this.player.lives === 0 ? true : false;
+        this.player.loseLife(this.zombies, this);
+        return this.lives === 0 ? true : false;
     }
 
     levelOver() {
