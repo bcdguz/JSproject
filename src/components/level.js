@@ -17,6 +17,10 @@ export default class Level {
         this.bullets = [];
         this.zombies = [];
 
+        //level transition html elements
+        this.modal = document.getElementsByClassName("level-modal")[0];
+        this.levelTitle = document.getElementById("level-transition");
+
         //start first level and begin listening
         this.start();
         this.moveListener();
@@ -45,7 +49,15 @@ export default class Level {
         if (this.player.kills === this.totalZombies) {
             this.wave++;
             this.totalZombies = this.wave * 2;
-            this.start();
+            const modal = this.modal;
+            const start = this.start.bind(this);
+
+            modal.style.display = "block";
+            this.levelTitle.innerHTML = `Wave ${this.wave}`;
+            setTimeout(() => {
+                modal.style.display = "none";
+                start();
+            }, 3500)
         }
     }
 

@@ -52,10 +52,16 @@ export default class Player {
             const damageDelta = Date.now() - this.timeOfDamage > 1000;
             if (overlap(player, zombie).type !== null && damageDelta) {
                 level.lives--;
+                this.zombieAttackSound();
                 this.timeOfDamage = Date.now();
                 return;
             }
         }
+    }
+
+    zombieAttackSound() {
+        const sound = document.getElementById('zomb-sound');
+        sound.play();
     }
 
     playerBounds(){

@@ -1,0 +1,19 @@
+.level-modal {
+  display: none;
+  position: fixed;
+  z-index: 3; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.342); 
+}
+
+.level-modal h1 {
+    font-size: 60px;
+    margin: 25% auto;
+    text-shadow: 0 0 10px #0E9C03;
+    opacity: 100%;
+    text-align: center;
+}

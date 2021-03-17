@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const backButton = document.getElementById('back-arrow');
     const backgroundMusic = document.getElementById('song');
     const gunSound = document.getElementById('gun-sound');
+    const zombSound = document.getElementById('zomb-sound');
     const audioButton = document.getElementById('audio-button');
     const volumeControl = document.getElementById('volume-control');
     const playAgain = document.getElementById('play-again-button');
@@ -77,10 +78,12 @@ window.addEventListener("DOMContentLoaded", () => {
         if (backgroundMusic.muted) {
             backgroundMusic.muted = false;
             gunSound.muted = false;
+            zombSound.muted = false;
             audioButton.classList.remove("muted");
         } else {
             backgroundMusic.muted = true;
             gunSound.muted = true;
+            zombSound.muted = true;
             audioButton.classList.add("muted");
         }
     })
