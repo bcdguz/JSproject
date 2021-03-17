@@ -53,7 +53,7 @@ export default class Level {
             const start = this.start.bind(this);
 
             modal.style.display = "block";
-            this.levelTitle.innerHTML = `Level ${this.wave}`;
+            this.levelTitle.innerHTML = `Wave ${this.wave}`;
             setTimeout(() => {
                 modal.style.display = "none";
                 start();

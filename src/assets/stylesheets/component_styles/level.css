@@ -8,12 +8,12 @@
   height: 100%; 
   overflow: auto; 
   background-color: rgba(0, 0, 0, 0.342); 
-  transition: all 1.5ss;
 }
 
 .level-modal h1 {
-    font-size: 50px;
-    margin: 10% auto;
-    transition: all 1.5s;
+    font-size: 60px;
+    margin: 25% auto;
+    text-shadow: 0 0 10px #0E9C03;
+    opacity: 100%;
     text-align: center;
 }
