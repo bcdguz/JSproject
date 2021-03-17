@@ -6,7 +6,7 @@
 
 ## Overview
 
-Zombies is a fun 2-D shooting game utilizing mouse and keyboard input. A player can move the character in various directions using the W A S D keys. Firing consists of aiming with the mouse cursor and left-click. It takes three shots to kill a zombie. There are infinite waves of zombies with that increase in difficulty. Once a zombie touches the player the game is over! Your score is the amount of waves you survived.
+Zombies is a fun 2-D shooting game utilizing mouse and keyboard input. A player can move the character in various directions using the W A S D keys. Firing consists of aiming with the mouse cursor and left-click. It takes three shots to kill a zombie. There are infinite waves of zombies that increase in difficulty. If a zombie touches you, you will lose a life. You only have three lives! Your score is the amount of waves you survived.
 
 ## Project Details and Technologies
 
